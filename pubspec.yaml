@@ -1,0 +1,86 @@
+name: test_app
+description: "A new Flutter project."
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  google_fonts: ^6.0.0
+  provider: ^6.0.5
+  shared_preferences: ^2.2.2  # ✅ Keep only this one
+  lottie: ^2.7.0
+  fl_chart: ^0.63.0
+  share_plus: ^7.2.1
+  http: ^1.4.0
+  intl: ^0.19.0
+  logger: ^2.0.2
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/splash_image.png
+    - assets/signin.png
+    - assets/logo.png
+    - assets/profile.png
+    - assets/mood_tracker.png
+    - assets/habit_tracker.png
+    - assets/habit_tracker_bg.png
+    - assets/mood_tracker_bg.png
+    - assets/notification_icon.png
+    - assets/reward_icon.png
+    - assets/today_icon.png
+    - assets/tracker_icon.png
+    - assets/affirmation_bg.png
+    - assets/start_screen.png
+    - assets/restart.png
+    - assets/Happy.png
+    - assets/Excited.png
+    - assets/Calm.png
+    - assets/Annoyed.png
+    - assets/Depressed.png
+    - assets/congrats.png
+    - assets/Leaderboard.png
+    - assets/Rewards.png
+    - assets/Logout.png
+    - assets/Refer Friends.png
+    - assets/menu.png
+    - assets/App Settings.png
+    - assets/celebration 1.png
+    - assets/celebration 2.png
+    - assets/google.png
+    - assets/facebook.png
+    - assets/verfication.png
+    - assets/meditation_bg.png
+    - assets/reading_bg.png
+    - assets/gratitude_bg.png
+    - assets/drink_bg.png
+    - assets/sleep_bg.png
+    - assets/digital_bg.png
+    - assets/calendar.png
+    - assets/meditation_timer.png
+    - assets/meditation.png
+    - assets/water.png
+    - assets/sleep_icon.png
+    - assets/readingbook.png
+    - assets/achievements.png
+    - assets/CoinWallet.png
+    - assets/Badgecollection.png
+    - assets/Milestones.png
+    - assets/reading.png
+    - assets/gratitude.png
+    - assets/drink.png
+    - assets/digital.png
+    - assets/sleep.png
