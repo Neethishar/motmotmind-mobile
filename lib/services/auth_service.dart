@@ -74,8 +74,8 @@ Future<void> signUp(
   }
 }
 
-/// 🔐 Verify OTP
-Future<void> verifyOtp(String email, String otp, BuildContext context) async {
+/// 🔐 Verify OTP (✅ Only keep this version)
+Future<bool> verifyOtp(String email, String otp, BuildContext context) async {
   try {
     final response = await http.post(
       Uri.parse("$baseUrl/verify-otp"),
@@ -85,23 +85,20 @@ Future<void> verifyOtp(String email, String otp, BuildContext context) async {
 
     debugPrint("🔵 Raw response: ${response.body}");
 
-    if (response.statusCode == 200 || response.statusCode == 400) {
-      final data = jsonDecode(response.body);
+    final data = jsonDecode(response.body);
 
-      if (response.statusCode == 200) {
-        debugPrint("✅ OTP Verified");
-        Navigator.pushNamed(context, '/today');
-      } else {
-        debugPrint("❌ OTP failed: ${data['message'] ?? 'Unknown error'}");
-        _showSnackBar(context, data['message'] ?? "OTP verification failed");
-      }
+    if (response.statusCode == 200) {
+      debugPrint("✅ OTP Verified");
+      return true;
     } else {
-      debugPrint("❌ Unexpected status: ${response.statusCode}");
-      _showSnackBar(context, "Unexpected server response");
+      debugPrint("❌ OTP failed: ${data['message'] ?? 'Unknown error'}");
+      _showSnackBar(context, data['message'] ?? "OTP verification failed");
+      return false;
     }
   } catch (e) {
     debugPrint("❌ OTP error: $e");
     _showSnackBar(context, "OTP verification error. Try again.");
+    return false;
   }
 }
 

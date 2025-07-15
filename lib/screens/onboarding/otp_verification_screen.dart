@@ -25,7 +25,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   Future<void> _submitOtp() async {
     final otp = _controllers.map((c) => c.text.trim()).join();
 
-    if (otp.length < 4 || otp.contains(RegExp(r'\D'))) {
+    if (otp.length != 4 || otp.contains(RegExp(r'\D'))) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Please enter a valid 4-digit OTP")),
@@ -33,7 +33,10 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
       return;
     }
 
-    await verifyOtp(widget.email, otp, context);
+    final success = await verifyOtp(widget.email, otp, context);
+    if (success && mounted) {
+      Navigator.pushReplacementNamed(context, '/sign_in');
+    }
   }
 
   Future<void> _resendOtp() async {
@@ -50,16 +53,12 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: Image.asset(
-              'assets/signin.png',
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset('assets/signin.png', fit: BoxFit.cover),
           ),
           SafeArea(
             child: Center(
               child: SingleChildScrollView(
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Image.asset('assets/logo.png', height: 80),
                     const SizedBox(height: 30),
@@ -74,11 +73,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                     const SizedBox(height: 20),
                     const Text(
                       'Enter the 4-digit OTP sent to your email',
+                      style: TextStyle(color: Colors.white70, fontSize: 16),
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 16,
-                      ),
                     ),
                     const SizedBox(height: 10),
                     Text(
@@ -86,12 +82,10 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                       style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 14,
                       ),
                     ),
                     const SizedBox(height: 30),
 
-                    // OTP Fields
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(4, (index) {
@@ -103,10 +97,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
                             maxLength: 1,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                            ),
+                            style: const TextStyle(fontSize: 20, color: Colors.white),
                             decoration: const InputDecoration(
                               counterText: '',
                               enabledBorder: UnderlineInputBorder(
@@ -134,9 +125,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-                    const SizedBox(height: 20),
 
-                    // Submit Button
+                    const SizedBox(height: 20),
                     SizedBox(
                       width: 280,
                       child: ElevatedButton(
@@ -155,7 +145,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
 
                     const SizedBox(height: 20),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
