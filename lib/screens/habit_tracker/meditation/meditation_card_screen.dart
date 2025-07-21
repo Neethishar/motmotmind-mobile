@@ -18,6 +18,7 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
   Stopwatch? stopwatch;
   late final String currentTime;
   int completedDays = 0;
+  String timeStatusMessage = "";
 
   @override
   void initState() {
@@ -43,20 +44,10 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
   }
 
   void startMeditation() {
-    if (isFinished) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            "✅ Today's session is already completed. Try again tomorrow!",
-          ),
-        ),
-      );
-      return;
-    }
-
     setState(() {
       isStarted = true;
       elapsedSeconds = 0;
+      timeStatusMessage = "";
     });
 
     stopwatch = Stopwatch()..start();
@@ -64,28 +55,48 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
     Future.doWhile(() async {
       await Future.delayed(const Duration(seconds: 1));
       if (!mounted || stopwatch == null || !stopwatch!.isRunning) return false;
+
       setState(() {
         elapsedSeconds = stopwatch!.elapsed.inSeconds;
+
+        if (elapsedSeconds >= 300) {
+          timeStatusMessage = "⏱️ Max time reached (5 min)";
+        } else if (elapsedSeconds < 120) {
+          timeStatusMessage = "⏳ You need minimum 2 min to finish";
+        } else {
+          timeStatusMessage = "✅ You can now finish";
+        }
       });
+
       return true;
     });
   }
 
-  void finishMeditation() async {
+  Future<void> finishMeditation() async {
+    if (elapsedSeconds < 120) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("⏳ Please meditate for at least 2 minutes."),
+        ),
+      );
+      return;
+    }
+
     stopwatch?.stop();
     final duration = stopwatch?.elapsed.inSeconds ?? elapsedSeconds;
     final startTime = DateTime.now().subtract(Duration(seconds: duration));
     final endTime = DateTime.now();
 
     setState(() {
-      isFinished = true;
       isStarted = false;
       elapsedSeconds = duration;
     });
 
     try {
       final response = await http.post(
-        Uri.parse('http://10.0.2.2:5002/api/meditation'),
+        Uri.parse(
+          'http://10.0.2.2:5002/api/meditation',
+        ), // ✅ Ensure backend is running
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'userId': 'asta_black',
@@ -130,9 +141,11 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.menu, color: Color(0xFFFF6D2C)),
-          onPressed: () => Scaffold.of(context).openDrawer(),
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu, color: Color(0xFFFF6D2C)),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
         ),
         actions: [
           IconButton(
@@ -164,27 +177,10 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
                 children: [
                   Image.asset('assets/meditation.png', height: 48, width: 48),
                   const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Meditation",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF333333),
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          "Day ${completedDays + 1} of 21 – How are you feeling today?",
-                          style: const TextStyle(
-                            fontSize: 14,
-                            color: Color(0xFF333333),
-                          ),
-                        ),
-                      ],
+                  const Expanded(
+                    child: Text(
+                      "How are you feeling now today?",
+                      style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
                     ),
                   ),
                   GestureDetector(
@@ -215,6 +211,17 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
             ),
             const SizedBox(height: 16),
 
+            Text(
+              timeStatusMessage,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFF666666),
+              ),
+            ),
+
+            const SizedBox(height: 30),
+
             const Text(
               "Time of Day",
               style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
@@ -226,7 +233,7 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
             ),
             const SizedBox(height: 30),
 
-            if (!isStarted && !isFinished)
+            if (!isStarted)
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -248,7 +255,7 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
                 ),
               ),
 
-            if (isStarted)
+            if (isStarted || elapsedSeconds >= 120)
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(

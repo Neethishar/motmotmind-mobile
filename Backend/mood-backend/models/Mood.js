@@ -7,6 +7,7 @@ const moodSchema = new mongoose.Schema({
   reason: { type: [String], required: true },
   day: { type: Number, required: true },
   note: { type: String },
+  timestamp: { type: Date, required: true }, // ✅ New field
 }, {
   timestamps: true,
 });

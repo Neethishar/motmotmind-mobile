@@ -2,36 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class MeditationCalendarPage extends StatefulWidget {
-  const MeditationCalendarPage({super.key});
+class GratitudeJournalCalendar extends StatefulWidget {
+  const GratitudeJournalCalendar({super.key});
 
   @override
-  State<MeditationCalendarPage> createState() => _MeditationCalendarPageState();
+  State<GratitudeJournalCalendar> createState() => _GratitudeJournalCalendarState();
 }
 
-class _MeditationCalendarPageState extends State<MeditationCalendarPage> {
+class _GratitudeJournalCalendarState extends State<GratitudeJournalCalendar> {
   List<int> completedDays = [];
+  late DateTime today;
   late int daysInMonth;
   late int startWeekday;
-  late DateTime today;
   late String monthKey;
 
   @override
   void initState() {
     super.initState();
     today = DateTime.now();
-    monthKey = DateFormat('yyyy-MM').format(today);
     daysInMonth = DateUtils.getDaysInMonth(today.year, today.month);
-    startWeekday = DateTime(today.year, today.month, 1).weekday;
+    startWeekday = DateTime(today.year, today.month, 1).weekday % 7;
+    monthKey = DateFormat('yyyy-MM').format(today);
     loadCompletedDays();
   }
 
   Future<void> loadCompletedDays() async {
     final prefs = await SharedPreferences.getInstance();
-    final completedList =
-        prefs.getStringList('meditation_completed_$monthKey') ?? [];
+    final savedList = prefs.getStringList('gratitude_completed_$monthKey') ?? [];
     setState(() {
-      completedDays = completedList.map(int.parse).toList();
+      completedDays = savedList.map(int.parse).toList();
     });
   }
 
@@ -61,20 +60,20 @@ class _MeditationCalendarPageState extends State<MeditationCalendarPage> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 image: const DecorationImage(
-                  image: AssetImage('assets/meditation_bg.png'),
+                  image: AssetImage('assets/gratitude_bg.png'),
                   fit: BoxFit.cover,
                 ),
               ),
               child: Row(
                 children: [
-                  Image.asset('assets/meditation.png', height: 48, width: 48),
+                  Image.asset('assets/gratitude.png', height: 48, width: 48),
                   const SizedBox(width: 12),
                   const Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Meditation Habit Tracker",
+                          "Gratitude Journal Tracker",
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -83,7 +82,7 @@ class _MeditationCalendarPageState extends State<MeditationCalendarPage> {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          "Calm your mind and reflect daily.",
+                          "Build your habit with daily reflection.",
                           style: TextStyle(
                             fontSize: 14,
                             color: Color(0xFF333333),
@@ -120,54 +119,10 @@ class _MeditationCalendarPageState extends State<MeditationCalendarPage> {
               ],
             ),
 
-            const SizedBox(height: 12),
+            const SizedBox(height: 8),
 
             /// 📆 Calendar Grid
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: daysInMonth + startWeekday - 1,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 7,
-                crossAxisSpacing: 6,
-                mainAxisSpacing: 6,
-              ),
-              itemBuilder: (context, index) {
-                if (index < startWeekday - 1) {
-                  return const SizedBox(); // Empty slot before the 1st
-                }
-
-                final day = index - (startWeekday - 2);
-                final isCompleted = completedDays.contains(day);
-                final isToday = day == today.day;
-
-                Color bgColor = Colors.grey.withAlpha(30);
-                Color textColor = const Color(0xFF333333);
-
-                if (isCompleted) {
-                  bgColor = const Color(0xFFFF6D2C).withAlpha(80);
-                  textColor = const Color(0xFFFF6D2C);
-                } else if (isToday) {
-                  bgColor = const Color(0xFFFF6D2C);
-                  textColor = Colors.white;
-                }
-
-                return Container(
-                  decoration: BoxDecoration(
-                    color: bgColor,
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    "$day",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: textColor,
-                    ),
-                  ),
-                );
-              },
-            ),
+            buildCalendarGrid(),
           ],
         ),
       ),
@@ -209,6 +164,62 @@ class _MeditationCalendarPageState extends State<MeditationCalendarPage> {
           ],
         ),
       ),
+    );
+  }
+
+  /// 👇 Inline monthly calendar builder
+  Widget buildCalendarGrid() {
+    final totalCells = daysInMonth + startWeekday;
+    final rows = (totalCells / 7).ceil();
+
+    return Column(
+      children: List.generate(rows, (rowIndex) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: List.generate(7, (colIndex) {
+            final cellIndex = rowIndex * 7 + colIndex;
+            final dayNum = cellIndex - startWeekday + 1;
+
+            if (cellIndex < startWeekday || dayNum > daysInMonth) {
+              return const SizedBox(width: 40, height: 40);
+            }
+
+            final isCompleted = completedDays.contains(dayNum);
+            final isToday = dayNum == today.day;
+
+            Color bgColor = isCompleted
+                ? const Color(0xFFFF6D2C).withAlpha(51) // 20% opacity
+                : Colors.grey.withAlpha(25); // ~10% opacity
+
+            Color textColor = isCompleted
+                ? const Color(0xFFFF6D2C)
+                : const Color(0xFF333333);
+
+            if (isToday) {
+              bgColor = const Color(0xFFFF6D2C);
+              textColor = Colors.white;
+            }
+
+            return Container(
+              width: 40,
+              height: 40,
+              margin: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: bgColor,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                "$dayNum",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: textColor,
+                ),
+              ),
+            );
+          }),
+        );
+      }),
     );
   }
 }

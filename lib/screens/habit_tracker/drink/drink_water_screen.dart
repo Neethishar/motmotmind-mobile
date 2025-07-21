@@ -1,3 +1,5 @@
+// Updated DrinkWaterScreen with improved logic for tracking 4 logs per day
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
@@ -10,51 +12,45 @@ class DrinkWaterScreen extends StatefulWidget {
 }
 
 class _DrinkWaterScreenState extends State<DrinkWaterScreen> {
-  final List<DrinkEntry> _entries = [
-    DrinkEntry("250 ml", "8 am"),
-    DrinkEntry("250 ml", "11 am"),
-    DrinkEntry("250 ml", "2 pm"),
-    DrinkEntry("250 ml", "5 pm"),
-  ];
-
-  bool isTodayAlreadySaved = false;
+  List<DrinkEntry> _entries = [];
   int savedLogsCount = 0;
 
   @override
   void initState() {
     super.initState();
-    _checkSavedStatus();
+    _initializeEntries();
+    _loadSavedLog();
   }
 
-  Future<void> _checkSavedStatus() async {
+  void _initializeEntries() {
+    _entries = [
+      DrinkEntry("250 ml", "8 am"),
+      DrinkEntry("250 ml", "11 am"),
+      DrinkEntry("250 ml", "2 pm"),
+      DrinkEntry("250 ml", "5 pm"),
+    ];
+  }
+
+  Future<void> _loadSavedLog() async {
     final prefs = await SharedPreferences.getInstance();
     final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final savedData = prefs.getStringList('drinkWaterLogs_$today');
 
-    final savedDate = prefs.getString('lastDrinkWaterDate');
-    final count = prefs.getInt('todayDrinkWaterLogCount') ?? 0;
+    if (savedData != null) {
+      for (int i = 0; i < _entries.length && i < savedData.length; i++) {
+        _entries[i].checked = savedData[i] == 'true';
+      }
+    }
 
-    if (!mounted) return;
     setState(() {
-      isTodayAlreadySaved = savedDate == today && count >= 4;
-      savedLogsCount = (savedDate == today) ? count : 0;
+      savedLogsCount = _entries.where((e) => e.checked).length;
     });
   }
 
   Future<void> _saveLog() async {
     final prefs = await SharedPreferences.getInstance();
     final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
-    final savedDate = prefs.getString('lastDrinkWaterDate');
-    int currentLogCount = prefs.getInt('todayDrinkWaterLogCount') ?? 0;
-
     final completed = _entries.where((e) => e.checked).length;
-
-    if (savedDate == today && currentLogCount >= 4) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("✅ You’ve completed all 4 logs today.")),
-      );
-      return;
-    }
 
     if (completed == 0) {
       if (!mounted) return;
@@ -64,18 +60,26 @@ class _DrinkWaterScreenState extends State<DrinkWaterScreen> {
       return;
     }
 
-    /// Update progress
-    await prefs.setString('lastDrinkWaterDate', today);
-    await prefs.setInt('todayDrinkWaterLogCount', currentLogCount + 1);
+    final logStatus = _entries.map((e) => e.checked.toString()).toList();
+    await prefs.setStringList('drinkWaterLogs_$today', logStatus);
 
-    /// When all 4 logs are completed
-    if (currentLogCount + 1 == 4) {
+    if (completed == 4) {
       int completedDays = prefs.getInt('drinkWaterCompletedDays') ?? 0;
       await prefs.setInt('drinkWaterCompletedDays', completedDays + 1);
     }
 
     if (!mounted) return;
-    Navigator.pushNamed(context, "/drink_water_congratulations");
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text("✅ Log saved successfully.")),
+    );
+
+    setState(() {
+      savedLogsCount = completed;
+    });
+
+    if (completed == 4) {
+      Navigator.pushNamed(context, "/drink_water_congratulations");
+    }
   }
 
   AppBar buildCommonAppBar(BuildContext context) {
@@ -198,8 +202,7 @@ class _DrinkWaterScreenState extends State<DrinkWaterScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () =>
-                        Navigator.pushNamed(context, "/drink_water_calendar"),
+                    onTap: () => Navigator.pushNamed(context, "/drink_water_calendar"),
                     child: Image.asset('assets/calendar.png', height: 30),
                   ),
                 ],
@@ -214,20 +217,19 @@ class _DrinkWaterScreenState extends State<DrinkWaterScreen> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            ..._entries.map(
+            ..._entries.asMap().entries.map(
               (entry) => CheckboxListTile(
                 title: Text(
-                  "${entry.amount} — ${entry.time}",
+                  "${entry.value.amount} — ${entry.value.time}",
                   style: const TextStyle(color: Color(0xFF333333)),
                 ),
-                value: entry.checked,
-                onChanged: isTodayAlreadySaved
-                    ? null
-                    : (value) {
-                        setState(() {
-                          entry.checked = value ?? false;
-                        });
-                      },
+                value: entry.value.checked,
+                onChanged: (value) {
+                  setState(() {
+                    _entries[entry.key].checked = value ?? false;
+                    savedLogsCount = _entries.where((e) => e.checked).length;
+                  });
+                },
                 controlAffinity: ListTileControlAffinity.leading,
                 contentPadding: EdgeInsets.zero,
               ),
@@ -236,7 +238,7 @@ class _DrinkWaterScreenState extends State<DrinkWaterScreen> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: isTodayAlreadySaved ? null : _saveLog,
+                onPressed: _saveLog,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFFF6D2C),
                   padding: const EdgeInsets.symmetric(vertical: 14),

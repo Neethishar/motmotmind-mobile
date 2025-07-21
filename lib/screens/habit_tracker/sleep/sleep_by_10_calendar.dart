@@ -1,15 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SleepBy10CalendarScreen extends StatelessWidget {
+class SleepBy10CalendarScreen extends StatefulWidget {
   const SleepBy10CalendarScreen({super.key});
+
+  @override
+  State<SleepBy10CalendarScreen> createState() => _SleepBy10CalendarScreenState();
+}
+
+class _SleepBy10CalendarScreenState extends State<SleepBy10CalendarScreen> {
+  List<int> completedDays = [];
+  late int daysInMonth;
+  late int startWeekday;
+  late DateTime today;
+  late String monthKey;
+
+  @override
+  void initState() {
+    super.initState();
+    today = DateTime.now();
+    monthKey = DateFormat('yyyy-MM').format(today);
+    daysInMonth = DateUtils.getDaysInMonth(today.year, today.month);
+    startWeekday = DateTime(today.year, today.month, 1).weekday;
+    loadCompletedDays();
+  }
+
+  Future<void> loadCompletedDays() async {
+    final prefs = await SharedPreferences.getInstance();
+    final completedList = prefs.getStringList('sleep_completed_$monthKey') ?? [];
+    setState(() {
+      completedDays = completedList.map(int.parse).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
-    /// Simulate data
-    final today = DateTime.now().day;
-    final completedDays = [1, 2, 3, 5, 6, 9, 12, 15]; // sample data
+    final String monthYear = DateFormat('MMMM yyyy').format(today);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
@@ -25,10 +53,10 @@ class SleepBy10CalendarScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            /// 🔹 Top card with sleep tracker info
+            /// 🔹 Top Card
             Container(
               width: screenWidth,
-              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 image: const DecorationImage(
@@ -37,14 +65,13 @@ class SleepBy10CalendarScreen extends StatelessWidget {
                 ),
               ),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset('assets/sleep.png', height: 48, width: 48),
                   const SizedBox(width: 12),
-                  Expanded(
+                  const Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           "Sleep by 10PM",
                           style: TextStyle(
@@ -64,48 +91,59 @@ class SleepBy10CalendarScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  Image.asset('assets/calendar.png', height: 28, width: 28),
                 ],
               ),
             ),
 
             const SizedBox(height: 24),
 
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Track your sleep for 21 days.",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF333333),
-                ),
-              ),
+            /// 📅 Month Title
+            Text(
+              monthYear,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
 
             const SizedBox(height: 12),
 
-            /// 🔹 Calendar Grid
+            /// 🗓️ Day Labels
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                Text("Sun", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Mon", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Tue", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Wed", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Thu", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Fri", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Sat", style: TextStyle(fontWeight: FontWeight.bold)),
+              ],
+            ),
+
+            const SizedBox(height: 12),
+
+            /// 📆 Calendar Grid
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 25, // 21 days + 4 empty cells
+              itemCount: daysInMonth + startWeekday - 1,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 5,
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
+                crossAxisCount: 7,
+                crossAxisSpacing: 6,
+                mainAxisSpacing: 6,
               ),
               itemBuilder: (context, index) {
-                if (index >= 21) return const SizedBox.shrink();
+                if (index < startWeekday - 1) return const SizedBox();
 
-                final dayNumber = index + 1;
-                bool isCompleted = completedDays.contains(dayNumber);
-                bool isToday = dayNumber == today;
+                final day = index - (startWeekday - 2);
+                final isCompleted = completedDays.contains(day);
+                final isToday = day == today.day;
 
                 Color bgColor = Colors.grey.withAlpha(30);
                 Color textColor = const Color(0xFF333333);
 
                 if (isCompleted) {
-                  bgColor = const Color(0xFFFF6D2C).withAlpha(50);
+                  bgColor = const Color(0xFFFF6D2C).withAlpha(80);
                   textColor = const Color(0xFFFF6D2C);
                 } else if (isToday) {
                   bgColor = const Color(0xFFFF6D2C);
@@ -119,7 +157,7 @@ class SleepBy10CalendarScreen extends StatelessWidget {
                   ),
                   alignment: Alignment.center,
                   child: Text(
-                    "$dayNumber",
+                    "$day",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: textColor,
@@ -132,9 +170,9 @@ class SleepBy10CalendarScreen extends StatelessWidget {
         ),
       ),
 
-      /// 🔹 Bottom Navigation
+      /// 🔻 Bottom Navigation
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.only(bottom: 12, top: 8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -145,10 +183,7 @@ class SleepBy10CalendarScreen extends StatelessWidget {
                 children: [
                   Image.asset('assets/today_icon.png', height: 28),
                   const SizedBox(height: 4),
-                  const Text(
-                    "Today",
-                    style: TextStyle(fontSize: 12, color: Color(0xFFFF6D2C)),
-                  ),
+                  const Text("Today", style: TextStyle(fontSize: 12, color: Color(0xFFFF6D2C))),
                 ],
               ),
             ),
@@ -159,10 +194,7 @@ class SleepBy10CalendarScreen extends StatelessWidget {
                 children: [
                   Image.asset('assets/mood_tracker.png', height: 28),
                   const SizedBox(height: 4),
-                  const Text(
-                    "Mood",
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
+                  const Text("Mood", style: TextStyle(fontSize: 12, color: Colors.grey)),
                 ],
               ),
             ),

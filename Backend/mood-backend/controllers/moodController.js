@@ -2,7 +2,11 @@ const Mood = require('../models/Mood');
 
 // POST /api/mood
 const saveMood = async (req, res) => {
-  const { userId, moodLabel, moodIcon, reason, day, note } = req.body;
+  const { userId, moodLabel, moodIcon, reason, day, note, timestamp } = req.body;
+
+  if (!timestamp) {
+    return res.status(400).json({ message: "Timestamp is required" });
+  }
 
   try {
     const newMood = new Mood({
@@ -11,7 +15,8 @@ const saveMood = async (req, res) => {
       moodIcon,
       reason,
       day,
-      note
+      note,
+      timestamp: new Date(timestamp) // ✅ Store ISO date string as Date
     });
 
     await newMood.save();

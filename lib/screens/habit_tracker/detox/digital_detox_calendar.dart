@@ -1,15 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class DigitalDetoxCalendarScreen extends StatelessWidget {
+class DigitalDetoxCalendarScreen extends StatefulWidget {
   const DigitalDetoxCalendarScreen({super.key});
+
+  @override
+  State<DigitalDetoxCalendarScreen> createState() =>
+      _DigitalDetoxCalendarScreenState();
+}
+
+class _DigitalDetoxCalendarScreenState
+    extends State<DigitalDetoxCalendarScreen> {
+  List<int> completedDays = [];
+  late int daysInMonth;
+  late int startWeekday;
+  late DateTime today;
+  late String monthKey;
+
+  @override
+  void initState() {
+    super.initState();
+    today = DateTime.now();
+    monthKey = DateFormat('yyyy-MM').format(today);
+    daysInMonth = DateUtils.getDaysInMonth(today.year, today.month);
+    startWeekday = DateTime(today.year, today.month, 1).weekday;
+    loadCompletedDays();
+  }
+
+  Future<void> loadCompletedDays() async {
+    final prefs = await SharedPreferences.getInstance();
+    final completedList =
+        prefs.getStringList('digital_detox_completed_$monthKey') ?? [];
+    setState(() {
+      completedDays = completedList.map(int.parse).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
-    /// Simulate data (replace with real logic later)
-    final today = DateTime.now().day;
-    final completedDays = [1, 2, 4, 5, 7, 10, 15];
+    final String monthYear = DateFormat('MMMM yyyy').format(today);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
@@ -25,31 +56,27 @@ class DigitalDetoxCalendarScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            /// Top Digital Detox Card
+            /// 🔶 Top Card
             Container(
               width: screenWidth,
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 image: const DecorationImage(
-                  image: AssetImage('/Users/neethisharmas/Desktop/mobile_test_app/assets/drink_bg.png'),
+                  image: AssetImage('assets/drink_bg.png'),
                   fit: BoxFit.cover,
                 ),
               ),
               child: Row(
                 children: [
-                  Image.asset(
-                    '/Users/neethisharmas/Desktop/mobile_test_app/assets/digital.png',
-                    height: 48,
-                    width: 48,
-                  ),
+                  Image.asset('assets/digital.png', height: 48, width: 48),
                   const SizedBox(width: 12),
-                  Expanded(
+                  const Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
-                          "Digital Detox",
+                          "Digital Detox Tracker",
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -58,7 +85,7 @@ class DigitalDetoxCalendarScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          "Day 2 of 21 – How are you feeling today?",
+                          "Disconnect daily to reconnect with life.",
                           style: TextStyle(
                             fontSize: 14,
                             color: Color(0xFF333333),
@@ -67,69 +94,59 @@ class DigitalDetoxCalendarScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Image.asset(
-                    'assets/calendar.png',
-                    height: 32,
-                    width: 32,
-                  ),
+                  Image.asset('assets/calendar.png', height: 28, width: 28),
                 ],
               ),
             ),
 
-            const SizedBox(height: 16),
-
-            /// Digital detox icon + description
-            Image.asset('/Users/neethisharmas/Desktop/mobile_test_app/assets/digital.png', height: 100),
-            const SizedBox(height: 8),
-            const Text(
-              "Take regular breaks from your devices and enjoy mindful moments.",
-              style: TextStyle(
-                fontSize: 14,
-                color: Color(0xFF333333),
-              ),
-              textAlign: TextAlign.center,
-            ),
-
             const SizedBox(height: 24),
 
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Track your digital detox for 21 days.",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF333333),
-                ),
-              ),
+            /// 📅 Month Title
+            Text(
+              monthYear,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
 
             const SizedBox(height: 12),
 
-            /// Calendar grid
+            /// 🗓️ Weekday Labels
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                Text("Sun", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Mon", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Tue", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Wed", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Thu", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Fri", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Sat", style: TextStyle(fontWeight: FontWeight.bold)),
+              ],
+            ),
+
+            const SizedBox(height: 12),
+
+            /// 📆 Calendar Grid
             GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 25, // 21 + 4 filler
+              itemCount: daysInMonth + startWeekday - 1,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 5,
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 8,
+                crossAxisCount: 7,
+                crossAxisSpacing: 6,
+                mainAxisSpacing: 6,
               ),
               itemBuilder: (context, index) {
-                if (index >= 21) {
-                  return const SizedBox.shrink();
-                }
+                if (index < startWeekday - 1) return const SizedBox();
 
-                final dayNumber = index + 1;
-                bool isCompleted = completedDays.contains(dayNumber);
-                bool isToday = dayNumber == today;
+                final day = index - (startWeekday - 2);
+                final isCompleted = completedDays.contains(day);
+                final isToday = day == today.day;
 
                 Color bgColor = Colors.grey.withAlpha(30);
                 Color textColor = const Color(0xFF333333);
 
                 if (isCompleted) {
-                  bgColor = const Color(0xFFFF6D2C).withAlpha(50);
+                  bgColor = const Color(0xFFFF6D2C).withAlpha(80);
                   textColor = const Color(0xFFFF6D2C);
                 } else if (isToday) {
                   bgColor = const Color(0xFFFF6D2C);
@@ -143,7 +160,7 @@ class DigitalDetoxCalendarScreen extends StatelessWidget {
                   ),
                   alignment: Alignment.center,
                   child: Text(
-                    "$dayNumber",
+                    "$day",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: textColor,
@@ -155,8 +172,10 @@ class DigitalDetoxCalendarScreen extends StatelessWidget {
           ],
         ),
       ),
+
+      /// 🔻 Bottom Navigation
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.only(bottom: 12, top: 8),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:test_app/utils/config.dart';  // ✅ Import baseUrl
+import 'package:intl/intl.dart';
+import 'package:test_app/utils/config.dart';
 
 class MoodCheckInScreen extends StatefulWidget {
   const MoodCheckInScreen({super.key});
@@ -24,47 +25,61 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
   ];
 
   final moodFactors = [
-    'Work', 'Friends', 'Exercise', 'Family',
-    'Hobbies', 'Sleep', 'Food', 'Health',
-    'Social Media', 'Weather'
+    'Work',
+    'Friends',
+    'Exercise',
+    'Family',
+    'Hobbies',
+    'Sleep',
+    'Food',
+    'Health',
+    'Social Media',
+    'Weather',
   ];
 
   Future<void> saveMoodCheckIn() async {
     final url = Uri.parse('$baseUrl/mood');
+    final moodEmoji = moodEmojis.firstWhere(
+      (m) => m['label'] == selectedMood,
+      orElse: () => {'emoji': ''},
+    )['emoji'];
 
     try {
+      final timestamp = DateTime.now().toIso8601String();
+
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-          'userId': '123',  // 🔹 Replace with actual user ID
+          'userId': '123',
           'moodLabel': selectedMood,
-          'moodIcon': moodEmojis.firstWhere((m) => m['label'] == selectedMood!)['emoji'],
+          'moodIcon': moodEmoji,
           'reason': selectedFactors,
           'day': DateTime.now().day,
           'note': _noteController.text,
+          'timestamp': timestamp,
         }),
       );
 
+      if (!mounted) return;
       if (response.statusCode == 201) {
-        if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Mood Check-in Saved!")),
-        );
+        Navigator.pushNamed(context, '/congratulations');
       } else {
-        debugPrint("❌ Failed: ${response.body}");
-        if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Error: ${response.body}")),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Error: ${response.body}")));
       }
     } catch (e) {
-      debugPrint("🔥 Error: $e");
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Network Error")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Network Error")));
     }
+  }
+
+  String getCurrentDateTimeFormatted() {
+    final now = DateTime.now();
+    return DateFormat('MMM dd, yyyy – hh:mm a').format(now);
   }
 
   void navigateTo(BuildContext context, String routeName) {
@@ -80,6 +95,7 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
+              /// Header
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -92,7 +108,10 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
                   Row(
                     children: [
                       IconButton(
-                        icon: Image.asset('assets/notification_icon.png', height: 24),
+                        icon: Image.asset(
+                          'assets/notification_icon.png',
+                          height: 24,
+                        ),
                         onPressed: () => navigateTo(context, '/notifications'),
                       ),
                       IconButton(
@@ -105,53 +124,84 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
               ),
               const SizedBox(height: 20),
 
+              /// Mood Prompt Card
+              _card(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Image.asset('assets/mood_tracker.png', height: 60),
+                        const SizedBox(width: 16),
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "How are you feeling?",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 4),
+                              Text("Take a moment to check in with yourself"),
+                            ],
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () => navigateTo(context, '/calendar'),
+                          child: Image.asset('assets/calendar.png', height: 30),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      "Now: ${getCurrentDateTimeFormatted()}",
+                      style: const TextStyle(
+                        color: Colors.black54,
+                        fontSize: 13,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              /// Scrollable content
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      _card(
-                        child: Row(
-                          children: [
-                            Image.asset('assets/mood_tracker.png', height: 60),
-                            const SizedBox(width: 16),
-                            const Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("How are you feeling?",
-                                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                                  SizedBox(height: 4),
-                                  Text("Take a moment to check in with yourself"),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
+                      /// Mood Selector
                       _card(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("Mood Selector", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                            const Text(
+                              "Mood Selector",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
                             const SizedBox(height: 12),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: moodEmojis.map((mood) {
                                 final label = mood['label']!;
+                                final isSelected = selectedMood == label;
                                 return GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      selectedMood = label;
-                                    });
-                                  },
+                                  onTap: () =>
+                                      setState(() => selectedMood = label),
                                   child: Column(
                                     children: [
                                       Text(
                                         mood['emoji']!,
                                         style: TextStyle(
                                           fontSize: 26,
-                                          color: selectedMood == label ? Colors.orange : Colors.black,
+                                          color: isSelected
+                                              ? Colors.orange
+                                              : Colors.black,
                                         ),
                                       ),
                                       const SizedBox(height: 4),
@@ -159,8 +209,12 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
                                         label,
                                         style: TextStyle(
                                           fontSize: 12,
-                                          fontWeight: selectedMood == label ? FontWeight.bold : FontWeight.normal,
-                                          color: selectedMood == label ? Colors.orange : Colors.black,
+                                          fontWeight: isSelected
+                                              ? FontWeight.bold
+                                              : FontWeight.normal,
+                                          color: isSelected
+                                              ? Colors.orange
+                                              : Colors.black,
                                         ),
                                       ),
                                     ],
@@ -172,22 +226,25 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
                         ),
                       ),
 
+                      /// Mood Factors
                       _card(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("What influenced your mood?", style: TextStyle(fontWeight: FontWeight.bold)),
+                            const Text(
+                              "What influenced your mood?",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                             const SizedBox(height: 12),
                             Wrap(
                               spacing: 8,
                               runSpacing: 8,
                               children: moodFactors.map((factor) {
-                                final isSelected = selectedFactors.contains(factor);
+                                final isSelected = selectedFactors.contains(
+                                  factor,
+                                );
                                 return ChoiceChip(
-                                  label: Text(
-                                    factor,
-                                    style: const TextStyle(color: Color(0xFF333333)),
-                                  ),
+                                  label: Text(factor),
                                   selected: isSelected,
                                   selectedColor: const Color(0xFFD9D9D9),
                                   backgroundColor: const Color(0xFFD9D9D9),
@@ -205,11 +262,15 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
                         ),
                       ),
 
+                      /// Notes
                       _card(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("Add a note", style: TextStyle(fontWeight: FontWeight.bold)),
+                            const Text(
+                              "Add a note",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                             const SizedBox(height: 8),
                             TextField(
                               controller: _noteController,
@@ -224,6 +285,8 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
                       ),
 
                       const SizedBox(height: 12),
+
+                      /// Save Button
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
@@ -237,7 +300,9 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
                           onPressed: () {
                             if (selectedMood == null) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text("Please select your mood.")),
+                                const SnackBar(
+                                  content: Text("Please select your mood."),
+                                ),
                               );
                               return;
                             }
@@ -245,7 +310,10 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
                           },
                           child: const Text(
                             "Save Mood Check-in",
-                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),

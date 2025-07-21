@@ -9,8 +9,7 @@ Future<void> sendMood({
   required String reason,
   required int day,
 }) async {
-  const String url =
-      'http://192.168.54.82:5000/api/mood'; // replace with your IP
+  const String url = 'http://10.0.2.2:5008/api/mood'; // replace with your IP
 
   final response = await http.post(
     Uri.parse(url),

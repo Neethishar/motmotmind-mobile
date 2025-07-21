@@ -74,11 +74,12 @@ class _ReadingBooksScreenState extends State<ReadingBooksScreen> {
         ],
       ),
       drawer: const Drawer(),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            /// Top Banner Card
+            /// 🔶 Top Banner Card
             Container(
               width: screenWidth,
               padding: const EdgeInsets.all(12),
@@ -93,11 +94,11 @@ class _ReadingBooksScreenState extends State<ReadingBooksScreen> {
                 children: [
                   Image.asset('assets/reading.png', height: 48, width: 48),
                   const SizedBox(width: 12),
-                  Expanded(
+                  const Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           "Reading Books",
                           style: TextStyle(
                             fontSize: 16,
@@ -105,10 +106,10 @@ class _ReadingBooksScreenState extends State<ReadingBooksScreen> {
                             color: Color(0xFF333333),
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        SizedBox(height: 4),
                         Text(
-                          "Day $completedDays of 21 – How are you feeling today?",
-                          style: const TextStyle(
+                          "How are you feeling today?",
+                          style: TextStyle(
                             fontSize: 14,
                             color: Color(0xFF333333),
                           ),
@@ -153,14 +154,15 @@ class _ReadingBooksScreenState extends State<ReadingBooksScreen> {
             ),
             const SizedBox(height: 30),
 
+            /// 🔘 Mark as Read Button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: alreadyReadToday ? null : handleReadingComplete,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: alreadyReadToday
-                      ? const Color(0xFFFF62DC) // After completion
-                      : const Color(0xFF666666), // Before clicking
+                      ? const Color(0xFFFF62DC)
+                      : const Color(0xFF666666),
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
@@ -179,7 +181,7 @@ class _ReadingBooksScreenState extends State<ReadingBooksScreen> {
         ),
       ),
 
-      /// ✅ Bottom Navigation Bar
+      /// 🔻 Bottom Navigation Bar
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 12, top: 8),
         child: Row(

@@ -1,12 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'mood_storage.dart';
 
-class CalendarPage extends StatelessWidget {
+class CalendarPage extends StatefulWidget {
   const CalendarPage({super.key});
 
   @override
+  State<CalendarPage> createState() => _CalendarPageState();
+}
+
+class _CalendarPageState extends State<CalendarPage> {
+  List<int> completedDays = [];
+  late int daysInMonth;
+  late int startWeekday;
+  late DateTime today;
+  late String monthKey;
+  Map<int, String> moodIcons = {};
+
+  @override
+  void initState() {
+    super.initState();
+    today = DateTime.now();
+    monthKey = DateFormat('yyyy-MM').format(today);
+    daysInMonth = DateUtils.getDaysInMonth(today.year, today.month);
+    startWeekday = DateTime(today.year, today.month, 1).weekday;
+    loadMoodData();
+  }
+
+  Future<void> loadMoodData() async {
+    final moods = await MoodStorage.loadMoods();
+    setState(() {
+      moodIcons = moods;
+      completedDays = moods.keys.toList();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final List<int> days = List.generate(29, (index) => index + 1);
+    final String monthYear = DateFormat('MMMM yyyy').format(today);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
@@ -35,6 +66,7 @@ class CalendarPage extends StatelessWidget {
         padding: const EdgeInsets.all(24.0),
         child: Column(
           children: [
+            /// Header Card
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(16),
@@ -49,7 +81,10 @@ class CalendarPage extends StatelessWidget {
                 children: [
                   Image.asset("assets/mood_tracker.png", height: 80),
                   const SizedBox(height: 16),
-                  const Text("Mood Tracker", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  const Text(
+                    "Mood Tracker",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                   const SizedBox(height: 8),
                   const Text(
                     "Track your emotions daily and gain insights to improve your mental wellbeing.",
@@ -59,75 +94,93 @@ class CalendarPage extends StatelessWidget {
                 ],
               ),
             ),
+
             const SizedBox(height: 24),
 
-            Expanded(
-              child: FutureBuilder<Map<int, String>>(
-                future: MoodStorage.loadMoods(),
-                builder: (context, snapshot) {
-                  final moods = snapshot.data ?? {};
-                  return GridView.builder(
-                    itemCount: days.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 5,
-                      mainAxisSpacing: 12,
-                      crossAxisSpacing: 12,
-                    ),
-                    itemBuilder: (context, index) {
-                      final day = days[index];
-                      final isToday = day == 1;
-                      final isBuffer = index >= 21;
-                      final moodIcon = moods[day];
+            /// Month label
+            Text(
+              monthYear,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
 
-                      return GestureDetector(
-                        onTap: isToday ? () => Navigator.pushNamed(context, '/challenge') : null,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: isToday
-                                ? const Color(0xFFFF6D2C)
-                                : isBuffer
-                                    ? Colors.grey.shade300
-                                    : Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.grey.shade400),
+            /// Day labels
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                Text("Sun", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Mon", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Tue", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Wed", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Thu", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Fri", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Sat", style: TextStyle(fontWeight: FontWeight.bold)),
+              ],
+            ),
+            const SizedBox(height: 12),
+
+            /// Calendar Grid
+            Expanded(
+              child: GridView.builder(
+                itemCount: daysInMonth + startWeekday - 1,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 7,
+                  mainAxisSpacing: 6,
+                  crossAxisSpacing: 6,
+                ),
+                itemBuilder: (context, index) {
+                  if (index < startWeekday - 1) return const SizedBox();
+
+                  final day = index - (startWeekday - 2);
+                  final isToday = day == today.day;
+                  final isCompleted = completedDays.contains(day);
+                  final moodIcon = moodIcons[day];
+
+                  Color bgColor = Colors.grey.withAlpha(30);
+                  Color textColor = const Color(0xFF333333);
+
+                  if (isCompleted) {
+                    bgColor = const Color(0xFFFF6D2C).withAlpha(80);
+                    textColor = const Color(0xFFFF6D2C);
+                  } else if (isToday) {
+                    bgColor = const Color(0xFFFF6D2C);
+                    textColor = Colors.white;
+                  }
+
+                  return GestureDetector(
+                    onTap: isToday
+                        ? () => Navigator.pushNamed(context, '/challenge')
+                        : null,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: bgColor,
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "$day",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: textColor,
+                            ),
                           ),
-                          alignment: Alignment.center,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                day.toString(),
-                                style: TextStyle(
-                                  color: isToday ? Colors.white : Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              if (moodIcon != null)
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 4),
-                                  child: Image.asset(moodIcon, height: 20),
-                                ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
+                          if (moodIcon != null)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4),
+                              child: Image.asset(moodIcon, height: 20),
+                            ),
+                        ],
+                      ),
+                    ),
                   );
                 },
               ),
             ),
 
-            const SizedBox(height: 16),
-            const Text("Track your mood for 21 days, with 4 buffer days if needed."),
-            const SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset("assets/restart.png", height: 20),
-                const SizedBox(width: 8),
-                const Text("You can restart your tracker anytime you like."),
-              ],
-            ),
+            /// Bottom Navigation
             const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
