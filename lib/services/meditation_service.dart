@@ -1,9 +1,14 @@
 import 'dart:convert';
+import 'dart:io'; // Needed for Platform checks
+
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const String baseUrl = "http://10.0.2.2:5002/api/meditation"; // ✅ Emulator IP
+final String baseUrl = Platform.isAndroid
+    ? "http://10.0.2.2:5002/api/meditation" // Android Emulator
+    : "http://localhost:5002/api/meditation"; // iOS Simulator
+
 final logger = Logger();
 
 Future<bool> saveMeditation({
@@ -28,7 +33,9 @@ Future<bool> saveMeditation({
       logger.i("✅ Meditation saved successfully");
       return true;
     } else {
-      logger.e("❌ Failed to save meditation: ${response.statusCode} → ${response.body}");
+      logger.e(
+        "❌ Failed to save meditation: ${response.statusCode} → ${response.body}",
+      );
       return false;
     }
   } catch (e) {

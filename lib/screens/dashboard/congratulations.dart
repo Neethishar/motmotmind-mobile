@@ -7,7 +7,12 @@ class CongratulationsPage extends StatelessWidget {
     Navigator.pushNamed(context, route);
   }
 
-  Widget _navButton(BuildContext context, String iconPath, String label, String route) {
+  Widget _navButton(
+    BuildContext context,
+    String iconPath,
+    String label,
+    String route,
+  ) {
     return GestureDetector(
       onTap: () => navigateTo(context, route),
       child: Column(
@@ -21,7 +26,12 @@ class CongratulationsPage extends StatelessWidget {
     );
   }
 
-  Widget _drawerMenuItem(BuildContext context, String iconPath, String label, String route) {
+  Widget _drawerMenuItem(
+    BuildContext context,
+    String iconPath,
+    String label,
+    String route,
+  ) {
     return ListTile(
       leading: Image.asset(iconPath, height: 28),
       title: Text(
@@ -54,20 +64,49 @@ class CongratulationsPage extends StatelessWidget {
                     const SizedBox(height: 12),
                     const Text(
                       "Asta Black",
-                      style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
               ),
               const SizedBox(height: 40),
-              _drawerMenuItem(context, 'assets/Rewards.png', 'Rewards', '/rewards'),
-              _drawerMenuItem(context, 'assets/Refer Friends.png', 'Refer Friends', '/refer'),
-              _drawerMenuItem(context, 'assets/Leaderboard.png', 'Leaderboard', '/leaderboard'),
-              _drawerMenuItem(context, 'assets/App Settings.png', 'App Settings', '/settings'),
+              _drawerMenuItem(
+                context,
+                'assets/Rewards.png',
+                'Rewards',
+                '/rewards',
+              ),
+              _drawerMenuItem(
+                context,
+                'assets/Refer Friends.png',
+                'Refer Friends',
+                '/refer',
+              ),
+              _drawerMenuItem(
+                context,
+                'assets/Leaderboard.png',
+                'Leaderboard',
+                '/leaderboard',
+              ),
+              _drawerMenuItem(
+                context,
+                'assets/App Settings.png',
+                'App Settings',
+                '/settings',
+              ),
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.only(bottom: 24.0),
-                child: _drawerMenuItem(context, 'assets/Logout.png', 'Logout', '/sign_in'),
+                child: _drawerMenuItem(
+                  context,
+                  'assets/Logout.png',
+                  'Logout',
+                  '/sign_in',
+                ),
               ),
             ],
           ),
@@ -90,7 +129,10 @@ class CongratulationsPage extends StatelessWidget {
                   Row(
                     children: [
                       IconButton(
-                        icon: Image.asset('assets/notification_icon.png', height: 24),
+                        icon: Image.asset(
+                          'assets/notification_icon.png',
+                          height: 24,
+                        ),
                         onPressed: () => navigateTo(context, '/notifications'),
                       ),
                       IconButton(
@@ -143,7 +185,10 @@ class CongratulationsPage extends StatelessWidget {
                               Expanded(
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context, "/start_mood_tracker");
+                                    Navigator.pushNamed(
+                                      context,
+                                      "/start_mood_tracker",
+                                    );
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color(0xFFB0B8C1),
@@ -183,8 +228,18 @@ class CongratulationsPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _navButton(context, 'assets/today_icon.png', "Today", "/today"),
-                  _navButton(context, 'assets/tracker_icon.png', "Tracker", "/tracker"),
+                  _navButton(
+                    context,
+                    'assets/today_icon.png',
+                    "Today",
+                    "/today",
+                  ),
+                  _navButton(
+                    context,
+                    'assets/tracker_icon.png',
+                    "Tracker",
+                    "/tracker",
+                  ),
                 ],
               ),
             ],

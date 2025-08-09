@@ -34,15 +34,15 @@ class _GratitudeWriteScreenState extends State<GratitudeWriteScreen> {
 
     if (text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Please write something before saving."),
-        ),
+        const SnackBar(content: Text("Please write something before saving.")),
       );
       return;
     }
 
     // ✅ Save to backend
-    await GratitudeService.saveGratitude(text); // Removed dayCount if not needed
+    await GratitudeService.saveGratitude(
+      text,
+    ); // Removed dayCount if not needed
 
     // ✅ Mark today as saved
     await prefs.setString('last_gratitude_date', formattedDate);
@@ -60,9 +60,7 @@ class _GratitudeWriteScreenState extends State<GratitudeWriteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Gratitude Journal'),
-      ),
+      appBar: AppBar(title: const Text('Gratitude Journal')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

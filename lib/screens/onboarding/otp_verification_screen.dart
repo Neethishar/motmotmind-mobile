@@ -11,8 +11,10 @@ class OTPVerificationScreen extends StatefulWidget {
 }
 
 class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
-  final List<TextEditingController> _controllers =
-      List.generate(4, (_) => TextEditingController());
+  final List<TextEditingController> _controllers = List.generate(
+    4,
+    (_) => TextEditingController(),
+  );
 
   @override
   void dispose() {
@@ -42,9 +44,9 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   Future<void> _resendOtp() async {
     await resendOtp(widget.email);
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("OTP has been resent")),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text("OTP has been resent")));
   }
 
   @override
@@ -97,7 +99,10 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
                             maxLength: 1,
-                            style: const TextStyle(fontSize: 20, color: Colors.white),
+                            style: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                            ),
                             decoration: const InputDecoration(
                               counterText: '',
                               enabledBorder: UnderlineInputBorder(
@@ -151,7 +156,9 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                         text: const TextSpan(
                           style: TextStyle(color: Colors.white70, fontSize: 13),
                           children: [
-                            TextSpan(text: 'By clicking submit you agree to our\n'),
+                            TextSpan(
+                              text: 'By clicking submit you agree to our\n',
+                            ),
                             TextSpan(
                               text: 'Terms and Conditions.',
                               style: TextStyle(

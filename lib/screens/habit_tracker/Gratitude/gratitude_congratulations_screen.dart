@@ -29,11 +29,7 @@ class GratitudeCongratulationsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 20),
-                  Image.asset(
-                    'assets/gratitude.png',
-                    height: 60,
-                    width: 60,
-                  ),
+                  Image.asset('assets/gratitude.png', height: 60, width: 60),
                   const SizedBox(height: 20),
                   const Text(
                     "Gratitude Day 1 Complete",
@@ -47,19 +43,13 @@ class GratitudeCongratulationsScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   const Text(
                     "“Beautiful! You reflected on gratitude today.”",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xFF333333),
-                    ),
+                    style: TextStyle(fontSize: 16, color: Color(0xFF333333)),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 4),
                   const Text(
                     "Keep going to complete all 21 days",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Color(0xFF333333),
-                    ),
+                    style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),
@@ -75,7 +65,10 @@ class GratitudeCongratulationsScreen extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, "/gratitude_journal_calendar");
+                      Navigator.pushNamed(
+                        context,
+                        "/gratitude_journal_calendar",
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF666666),

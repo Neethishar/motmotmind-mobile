@@ -16,8 +16,8 @@ class _TodayScreenState extends State<TodayScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    // ✅ Get the username from arguments if passed through Navigator
-    final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    final args =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
 
     if (args != null && args.containsKey('username')) {
       username = args['username'];
@@ -38,11 +38,14 @@ class _TodayScreenState extends State<TodayScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xFFF5F7FA),
       drawer: const Drawer(child: Center(child: Text("Drawer Menu"))),
+      bottomNavigationBar: _buildBottomNav(),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(), // ✅ Smooth iOS scroll
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -61,16 +64,8 @@ class _TodayScreenState extends State<TodayScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              Expanded(
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  children: _buildHabitCards(screenWidth),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: _buildBottomNav(),
-              ),
+              ..._buildHabitCards(screenWidth),
+              const SizedBox(height: 100), // Padding before nav bar
             ],
           ),
         ),
@@ -79,28 +74,31 @@ class _TodayScreenState extends State<TodayScreen> {
   }
 
   Widget _buildHeader() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Builder(
-          builder: (context) => IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () => Scaffold.of(context).openDrawer(),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Builder(
+            builder: (context) => IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            ),
           ),
-        ),
-        Row(
-          children: [
-            IconButton(
-              icon: Image.asset('assets/notification_icon.png', height: 24),
-              onPressed: () => navigateTo('/notifications'),
-            ),
-            IconButton(
-              icon: Image.asset('assets/reward_icon.png', height: 24),
-              onPressed: () => navigateTo('/rewards'),
-            ),
-          ],
-        ),
-      ],
+          Row(
+            children: [
+              IconButton(
+                icon: Image.asset('assets/notification_icon.png', height: 24),
+                onPressed: () => navigateTo('/notifications'),
+              ),
+              IconButton(
+                icon: Image.asset('assets/reward_icon.png', height: 24),
+                onPressed: () => navigateTo('/rewards'),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -275,22 +273,35 @@ class _TodayScreenState extends State<TodayScreen> {
   }
 
   Widget _buildBottomNav() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _navButton(
-          'assets/today_icon.png',
-          "Today",
-          "/today",
-          isSelected: true,
-        ),
-        _navButton(
-          'assets/mood_tracker.png',
-          "Mood",
-          "/mood_check_in",
-          isSelected: false,
-        ),
-      ],
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 4,
+            offset: Offset(0, -2),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _navButton(
+            'assets/today_icon.png',
+            "Today",
+            "/today",
+            isSelected: true,
+          ),
+          _navButton(
+            'assets/mood_tracker.png',
+            "Mood",
+            "/mood_check_in",
+            isSelected: false,
+          ),
+        ],
+      ),
     );
   }
 

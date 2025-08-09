@@ -5,10 +5,12 @@ class DrinkWaterCongratulationsPage extends StatefulWidget {
   const DrinkWaterCongratulationsPage({super.key});
 
   @override
-  State<DrinkWaterCongratulationsPage> createState() => _DrinkWaterCongratulationsPageState();
+  State<DrinkWaterCongratulationsPage> createState() =>
+      _DrinkWaterCongratulationsPageState();
 }
 
-class _DrinkWaterCongratulationsPageState extends State<DrinkWaterCongratulationsPage> {
+class _DrinkWaterCongratulationsPageState
+    extends State<DrinkWaterCongratulationsPage> {
   int completedDays = 1;
 
   @override

@@ -69,9 +69,9 @@ class _DrinkWaterScreenState extends State<DrinkWaterScreen> {
     }
 
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("✅ Log saved successfully.")),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text("✅ Log saved successfully.")));
 
     setState(() {
       savedLogsCount = completed;
@@ -202,7 +202,8 @@ class _DrinkWaterScreenState extends State<DrinkWaterScreen> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () => Navigator.pushNamed(context, "/drink_water_calendar"),
+                    onTap: () =>
+                        Navigator.pushNamed(context, "/drink_water_calendar"),
                     child: Image.asset('assets/calendar.png', height: 30),
                   ),
                 ],

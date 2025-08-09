@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../services/mood_service.dart';
 
-
 import 'mood_storage.dart'; // ✅ Assuming this exists
 
 class ChallengePage extends StatefulWidget {
@@ -108,7 +107,10 @@ class _ChallengePageState extends State<ChallengePage> {
                         const SizedBox(height: 8),
                         const Text(
                           "Mood Tracker",
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         const SizedBox(height: 4),
                         const Text(
@@ -135,10 +137,17 @@ class _ChallengePageState extends State<ChallengePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Mood Selector",
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    const Text(
+                      "Mood Selector",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     const SizedBox(height: 8),
-                    const Text("Select the emotion that best describes your mood right now:"),
+                    const Text(
+                      "Select the emotion that best describes your mood right now:",
+                    ),
                     const SizedBox(height: 12),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -153,7 +162,9 @@ class _ChallengePageState extends State<ChallengePage> {
                               });
                             },
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                              ),
                               child: Column(
                                 children: [
                                   Container(
@@ -161,10 +172,15 @@ class _ChallengePageState extends State<ChallengePage> {
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: isSelected
-                                          ? const Color(0xFFFFA726).withAlpha(77)
+                                          ? const Color(
+                                              0xFFFFA726,
+                                            ).withAlpha(77)
                                           : null,
                                       border: isSelected
-                                          ? Border.all(color: Colors.orange, width: 2)
+                                          ? Border.all(
+                                              color: Colors.orange,
+                                              width: 2,
+                                            )
                                           : null,
                                     ),
                                     child: Image.asset(
@@ -173,7 +189,10 @@ class _ChallengePageState extends State<ChallengePage> {
                                     ),
                                   ),
                                   const SizedBox(height: 4),
-                                  Text(mood['label']!, style: const TextStyle(fontSize: 12)),
+                                  Text(
+                                    mood['label']!,
+                                    style: const TextStyle(fontSize: 12),
+                                  ),
                                 ],
                               ),
                             ),
@@ -209,8 +228,10 @@ class _ChallengePageState extends State<ChallengePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Would you like to share why you feel this way?",
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    const Text(
+                      "Would you like to share why you feel this way?",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                     const SizedBox(height: 8),
                     TextField(
                       controller: reasonController,
@@ -229,12 +250,17 @@ class _ChallengePageState extends State<ChallengePage> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: selectedMoodIcon != null ? saveMoodAndNavigate : null,
+                  onPressed: selectedMoodIcon != null
+                      ? saveMoodAndNavigate
+                      : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFFF6D2C),
                     padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
-                  child: const Text("Save Mood", style: TextStyle(color: Colors.white)),
+                  child: const Text(
+                    "Save Mood",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ],

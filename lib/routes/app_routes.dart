@@ -15,7 +15,8 @@ import '../screens/dashboard/congratulations.dart' as dashboard;
 import '../screens/dashboard/mood_check_in.dart';
 
 // Meditation Habit Tracker
-import '../screens/habit_tracker/meditation/meditation_card_screen.dart' as meditation;
+import '../screens/habit_tracker/meditation/meditation_card_screen.dart'
+    as meditation;
 import '../screens/habit_tracker/meditation/meditation_congratulation.dart';
 import '../screens/habit_tracker/meditation/meditation_calendar_page.dart';
 
@@ -72,13 +73,15 @@ final Map<String, WidgetBuilder> appRoutes = {
 
   // ✅ Meditation
   '/meditation_card': (context) => const meditation.MeditationCardScreen(),
-  '/meditation_congratulation': (context) => const MeditationCongratulationsPage(),
+  '/meditation_congratulation': (context) =>
+      const MeditationCongratulationsPage(),
   '/meditation_calendar': (context) => const MeditationCalendarPage(),
 
   // ✅ Drink Water
   '/drink_water': (context) => const DrinkWaterScreen(),
   '/drink_water_calendar': (context) => const DrinkWaterCalendarScreen(),
-  '/drink_water_congratulations': (context) => const DrinkWaterCongratulationsPage(),
+  '/drink_water_congratulations': (context) =>
+      const DrinkWaterCongratulationsPage(),
 
   // ✅ Sleep by 10
   '/sleep_by_10': (context) => const SleepBy10Screen(),
@@ -96,7 +99,8 @@ final Map<String, WidgetBuilder> appRoutes = {
   // ✅ Digital Detox
   '/digital_detox': (context) => const DigitalDetoxScreen(),
   '/digital_detox_calendar': (context) => const DigitalDetoxCalendarScreen(),
-  '/digital_detox_congratulations': (context) => const DigitalDetoxCongratulationsPage(),
+  '/digital_detox_congratulations': (context) =>
+      const DigitalDetoxCongratulationsPage(),
 
   // ✅ Reading Books
   '/reading_books': (context) => const ReadingBooksScreen(),
@@ -105,9 +109,9 @@ final Map<String, WidgetBuilder> appRoutes = {
 
   // ✅ Gratitude Journal
   // Gratitude Habit Tracker
-'/gratitude_journal': (context) => const GratitudeJournalScreen(),
-'/gratitude_write': (context) => const GratitudeWriteScreen(),
-'/gratitude_journal_calendar': (context) => const GratitudeJournalCalendar(),
-'/gratitude_congratulations': (context) => const GratitudeCongratulationsScreen(),
-
+  '/gratitude_journal': (context) => const GratitudeJournalScreen(),
+  '/gratitude_write': (context) => const GratitudeWriteScreen(),
+  '/gratitude_journal_calendar': (context) => const GratitudeJournalCalendar(),
+  '/gratitude_congratulations': (context) =>
+      const GratitudeCongratulationsScreen(),
 };

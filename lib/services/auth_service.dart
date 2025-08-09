@@ -3,9 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:io';
 
-// ✅ Use your local IP and backend route path
-const String baseUrl = "http://10.0.2.2:5001/api/auth";
+// ✅ Use local IP for Android, localhost for iOS/simulator
+final String baseUrl = Platform.isAndroid
+    ? "http://10.0.2.2:5001/api/auth"
+    : "http://localhost:5001/api/auth";
 
 /// 🔐 Sign In
 Future<void> signIn(String email, String password, BuildContext context) async {
@@ -17,6 +20,8 @@ Future<void> signIn(String email, String password, BuildContext context) async {
     );
 
     debugPrint("🔵 Raw response: ${response.body}");
+
+    if (!context.mounted) return;
 
     if (response.statusCode == 200 || response.statusCode == 400) {
       final data = jsonDecode(response.body);
@@ -33,6 +38,7 @@ Future<void> signIn(String email, String password, BuildContext context) async {
       _showSnackBar(context, "Unexpected server response");
     }
   } catch (e) {
+    if (!context.mounted) return;
     debugPrint("❌ Login error: $e");
     _showSnackBar(context, "Login error. Check your internet or server.");
   }
@@ -54,6 +60,8 @@ Future<void> signUp(
 
     debugPrint("🔵 Raw response: ${response.body}");
 
+    if (!context.mounted) return;
+
     if (response.statusCode == 200 || response.statusCode == 400) {
       final data = jsonDecode(response.body);
 
@@ -69,12 +77,13 @@ Future<void> signUp(
       _showSnackBar(context, "Unexpected server response");
     }
   } catch (e) {
+    if (!context.mounted) return;
     debugPrint("❌ Signup error: $e");
     _showSnackBar(context, "Signup error. Check your internet or server.");
   }
 }
 
-/// 🔐 Verify OTP (✅ Only keep this version)
+/// 🔐 Verify OTP
 Future<bool> verifyOtp(String email, String otp, BuildContext context) async {
   try {
     final response = await http.post(
@@ -84,6 +93,8 @@ Future<bool> verifyOtp(String email, String otp, BuildContext context) async {
     );
 
     debugPrint("🔵 Raw response: ${response.body}");
+
+    if (!context.mounted) return false;
 
     final data = jsonDecode(response.body);
 
@@ -96,13 +107,14 @@ Future<bool> verifyOtp(String email, String otp, BuildContext context) async {
       return false;
     }
   } catch (e) {
+    if (!context.mounted) return false;
     debugPrint("❌ OTP error: $e");
     _showSnackBar(context, "OTP verification error. Try again.");
     return false;
   }
 }
 
-/// 🔁 Resend OTP
+/// 🔁 Resend OTP (no BuildContext used)
 Future<void> resendOtp(String email) async {
   try {
     final response = await http.post(
@@ -129,7 +141,7 @@ Future<void> resendOtp(String email) async {
   }
 }
 
-/// 🔔 Helper: Show SnackBar
+/// 🔔 Show error message
 void _showSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(content: Text(message), backgroundColor: Colors.red.shade400),

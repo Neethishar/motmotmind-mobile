@@ -6,7 +6,8 @@ class ReadingBookCalendarScreen extends StatefulWidget {
   const ReadingBookCalendarScreen({super.key});
 
   @override
-  State<ReadingBookCalendarScreen> createState() => _ReadingBookCalendarScreenState();
+  State<ReadingBookCalendarScreen> createState() =>
+      _ReadingBookCalendarScreenState();
 }
 
 class _ReadingBookCalendarScreenState extends State<ReadingBookCalendarScreen> {
@@ -28,7 +29,8 @@ class _ReadingBookCalendarScreenState extends State<ReadingBookCalendarScreen> {
 
   Future<void> loadCompletedDays() async {
     final prefs = await SharedPreferences.getInstance();
-    final completedList = prefs.getStringList('reading_completed_$monthKey') ?? [];
+    final completedList =
+        prefs.getStringList('reading_completed_$monthKey') ?? [];
     setState(() {
       completedDays = completedList.map(int.parse).toList();
     });
@@ -45,7 +47,7 @@ class _ReadingBookCalendarScreenState extends State<ReadingBookCalendarScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFFFF6D2C)),
+          icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFFFF6D2C)),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -184,7 +186,10 @@ class _ReadingBookCalendarScreenState extends State<ReadingBookCalendarScreen> {
                 children: [
                   Image.asset('assets/today_icon.png', height: 28),
                   const SizedBox(height: 4),
-                  const Text("Today", style: TextStyle(fontSize: 12, color: Color(0xFFFF6D2C))),
+                  const Text(
+                    "Today",
+                    style: TextStyle(fontSize: 12, color: Color(0xFFFF6D2C)),
+                  ),
                 ],
               ),
             ),
@@ -195,7 +200,10 @@ class _ReadingBookCalendarScreenState extends State<ReadingBookCalendarScreen> {
                 children: [
                   Image.asset('assets/mood_tracker.png', height: 28),
                   const SizedBox(height: 4),
-                  const Text("Mood", style: TextStyle(fontSize: 12, color: Colors.grey)),
+                  const Text(
+                    "Mood",
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
                 ],
               ),
             ),

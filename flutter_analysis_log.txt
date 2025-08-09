@@ -1,0 +1,326 @@
+Analyzing motmotmind-mobile...                                  
+
+  error • Target of URI doesn't exist: 'package:flutter_localizations/flutter_localizations.dart' • flutter/dev/benchmarks/test_apps/stocks/lib/i18n/stock_strings.dart:11:8 • uri_does_not_exist
+  error • Const variables must be initialized with a constant value • flutter/dev/benchmarks/test_apps/stocks/lib/i18n/stock_strings.dart:94:9 • const_initialized_with_non_constant_value
+  error • The values in a const list literal must be constants • flutter/dev/benchmarks/test_apps/stocks/lib/i18n/stock_strings.dart:94:9 • non_constant_list_element
+  error • Undefined name 'GlobalMaterialLocalizations' • flutter/dev/benchmarks/test_apps/stocks/lib/i18n/stock_strings.dart:94:9 • undefined_identifier
+  error • The values in a const list literal must be constants • flutter/dev/benchmarks/test_apps/stocks/lib/i18n/stock_strings.dart:95:9 • non_constant_list_element
+  error • Undefined name 'GlobalCupertinoLocalizations' • flutter/dev/benchmarks/test_apps/stocks/lib/i18n/stock_strings.dart:95:9 • undefined_identifier
+  error • The values in a const list literal must be constants • flutter/dev/benchmarks/test_apps/stocks/lib/i18n/stock_strings.dart:96:9 • non_constant_list_element
+  error • Undefined name 'GlobalWidgetsLocalizations' • flutter/dev/benchmarks/test_apps/stocks/lib/i18n/stock_strings.dart:96:9 • undefined_identifier
+  error • A value of type 'TextStyle?' can't be assigned to a variable of type 'TextStyle' • flutter/dev/benchmarks/test_apps/stocks/lib/stock_symbol_viewer.dart:24:32 • invalid_assignment
+  error • Target of URI doesn't exist: 'package:stocks/main.dart' • flutter/dev/benchmarks/test_apps/stocks/test/icon_color_test.dart:7:8 • uri_does_not_exist
+  error • Target of URI doesn't exist: 'package:stocks/stock_data.dart' • flutter/dev/benchmarks/test_apps/stocks/test/icon_color_test.dart:8:8 • uri_does_not_exist
+  error • A value of type 'Element?' can't be assigned to a variable of type 'Element' • flutter/dev/benchmarks/test_apps/stocks/test/icon_color_test.dart:41:28 • invalid_assignment
+  error • A value of type 'Element?' can't be assigned to a variable of type 'Element' • flutter/dev/benchmarks/test_apps/stocks/test/icon_color_test.dart:45:25 • invalid_assignment
+  error • Target of URI doesn't exist: 'package:stocks/main.dart' • flutter/dev/benchmarks/test_apps/stocks/test/locale_test.dart:6:8 • uri_does_not_exist
+  error • Target of URI doesn't exist: 'package:stocks/stock_data.dart' • flutter/dev/benchmarks/test_apps/stocks/test/locale_test.dart:7:8 • uri_does_not_exist
+  error • Target of URI doesn't exist: 'package:stocks/main.dart' • flutter/dev/benchmarks/test_apps/stocks/test/search_test.dart:7:8 • uri_does_not_exist
+  error • Target of URI doesn't exist: 'package:stocks/stock_data.dart' • flutter/dev/benchmarks/test_apps/stocks/test/search_test.dart:8:8 • uri_does_not_exist
+  error • Target of URI doesn't exist: 'package:flutter_driver/driver_extension.dart' • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf.dart:5:8 • uri_does_not_exist
+  error • Target of URI doesn't exist: 'package:stocks/main.dart' • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf.dart:6:8 • uri_does_not_exist
+  error • The function 'enableFlutterDriverExtension' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf.dart:9:3 • undefined_function
+  error • Target of URI doesn't exist: 'package:flutter_driver/flutter_driver.dart' • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:7:8 • uri_does_not_exist
+  error • Target of URI doesn't exist: 'package:test/test.dart' • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:8:8 • uri_does_not_exist
+  error • The function 'group' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:11:3 • undefined_function
+  error • Undefined class 'FlutterDriver' • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:12:10 • undefined_class
+  error • The function 'setUpAll' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:14:5 • undefined_function
+  error • Undefined name 'FlutterDriver' • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:15:22 • undefined_identifier
+  error • The function 'tearDownAll' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:18:5 • undefined_function
+  error • The function 'test' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:22:5 • undefined_function
+  error • Undefined class 'Timeline' • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:23:13 • undefined_class
+  error • Undefined class 'SerializableFinder' • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:25:15 • undefined_class
+  error • Undefined name 'find' • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:25:46 • undefined_identifier
+  error • The function 'expect' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:26:9 • undefined_function
+  error • Undefined name 'isNotNull' • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:26:27 • undefined_identifier
+  error • Undefined class 'TimelineSummary' • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:41:13 • undefined_class
+  error • Undefined name 'TimelineSummary' • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:41:39 • undefined_identifier
+  error • Undefined name 'Timeout' • flutter/dev/benchmarks/test_apps/stocks/test_driver/scroll_perf_test.dart:43:17 • undefined_identifier
+  error • Target of URI doesn't exist: 'package:flutter_driver/driver_extension.dart' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view.dart:5:8 • uri_does_not_exist
+  error • Target of URI doesn't exist: 'package:stocks/main.dart' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view.dart:6:8 • uri_does_not_exist
+  error • The function 'enableFlutterDriverExtension' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view.dart:9:3 • undefined_function
+  error • Target of URI doesn't exist: 'package:flutter_driver/flutter_driver.dart' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:7:8 • uri_does_not_exist
+  error • Target of URI doesn't exist: 'package:test/test.dart' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:8:8 • uri_does_not_exist
+  error • The function 'group' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:11:3 • undefined_function
+  error • Undefined class 'FlutterDriver' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:12:10 • undefined_class
+  error • The function 'setUpAll' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:14:5 • undefined_function
+  error • Undefined name 'FlutterDriver' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:15:22 • undefined_identifier
+  error • The function 'tearDownAll' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:18:5 • undefined_function
+  error • The function 'test' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:22:5 • undefined_function
+  error • Undefined class 'SerializableFinder' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:23:13 • undefined_class
+  error • Undefined name 'find' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:23:44 • undefined_identifier
+  error • The function 'expect' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:24:7 • undefined_function
+  error • Undefined name 'isNotNull' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:24:25 • undefined_identifier
+  error • Undefined name 'Timeout' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:25:17 • undefined_identifier
+  error • The function 'test' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:27:5 • undefined_function
+  error • Undefined class 'SerializableFinder' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:30:15 • undefined_class
+  error • Undefined name 'find' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:30:46 • undefined_identifier
+  error • The function 'expect' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:31:9 • undefined_function
+  error • Undefined name 'isNotNull' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:31:27 • undefined_identifier
+  error • Undefined class 'SerializableFinder' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:33:15 • undefined_class
+  error • Undefined name 'find' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:33:49 • undefined_identifier
+  error • Undefined class 'SerializableFinder' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:39:15 • undefined_class
+  error • Undefined name 'find' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:39:48 • undefined_identifier
+  error • The function 'expect' isn't defined • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:42:9 • undefined_function
+  error • Undefined name 'Timeout' • flutter/dev/benchmarks/test_apps/stocks/test_driver/stock_view_test.dart:45:16 • undefined_identifier
+warning • The include file 'package:flutter_lints/flutter.yaml' in '/Users/neethiremote/Desktop/motmotmind-mobile/flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/analysis_options.yaml' can't be found when analyzing '/Users/neethiremote/Desktop/motmotmind-mobile/flutter/packages/flutter_tools' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/analysis_options.yaml:10:10 • include_file_not_found
+  error • Target of URI doesn't exist: 'package:flutter/material.dart' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:5:8 • uri_does_not_exist
+  error • Classes can only extend other classes • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:7:40 • extends_non_class
+  error • Undefined class 'IconData' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:16:9 • undefined_class
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:19:3 • undefined_class
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:19:10 • override_on_non_overriding_member
+  error • Undefined class 'BuildContext' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:19:16 • undefined_class
+  error • The method 'Tooltip' isn't defined for the type '_WidgetPreviewIconButton' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:20:12 • undefined_method
+  error • The method 'Ink' isn't defined for the type '_WidgetPreviewIconButton' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:22:14 • undefined_method
+  error • The method 'ShapeDecoration' isn't defined for the type '_WidgetPreviewIconButton' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:23:21 • undefined_method
+  error • The name 'CircleBorder' isn't a class • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:24:24 • creation_with_non_type
+  error • Undefined name 'Colors' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:25:38 • undefined_identifier
+  error • Undefined name 'Colors' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:25:57 • undefined_identifier
+  error • The method 'IconButton' isn't defined for the type '_WidgetPreviewIconButton' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:27:16 • undefined_method
+  error • The method 'Icon' isn't defined for the type '_WidgetPreviewIconButton' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:29:17 • undefined_method
+  error • Undefined name 'Colors' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:29:29 • undefined_identifier
+  error • Classes can only extend other classes • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:37:28 • extends_non_class
+  error • No associated named super constructor parameter • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:40:11 • super_formal_parameter_without_associated_named
+  error • Undefined class 'TransformationController' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:41:14 • undefined_class
+  error • Undefined class 'TransformationController' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:45:9 • undefined_class
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:49:3 • undefined_class
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:49:10 • override_on_non_overriding_member
+  error • Undefined class 'BuildContext' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:49:16 • undefined_class
+  error • The method 'Row' isn't defined for the type 'ZoomControls' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:50:12 • undefined_method
+  error • Undefined name 'MainAxisSize' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:51:21 • undefined_identifier
+  error • The name 'Widget' isn't a type, so it can't be used as a type argument • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:52:18 • non_type_as_type_argument
+  error • Undefined name 'Icons' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:56:17 • undefined_identifier
+  error • The name 'SizedBox' isn't a class • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:58:15 • creation_with_non_type
+  error • Undefined name 'Icons' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:62:17 • undefined_identifier
+  error • The name 'SizedBox' isn't a class • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:64:15 • creation_with_non_type
+  error • Undefined name 'Icons' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:68:17 • undefined_identifier
+  error • Undefined name 'Matrix4' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:75:39 • undefined_identifier
+  error • Undefined class 'Matrix4' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:81:11 • undefined_class
+  error • Undefined name 'Matrix4' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:81:29 • undefined_identifier
+  error • Undefined name 'Matrix4' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/controls.dart:95:39 • undefined_identifier
+  error • Target of URI doesn't exist: 'package:flutter/material.dart' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/utils.dart:5:8 • uri_does_not_exist
+  error • Undefined class 'TextStyle' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/utils.dart:9:1 • undefined_class
+  error • Undefined class 'TextStyle' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/utils.dart:9:25 • undefined_class
+  error • The name 'proportionalFigures' isn't a class • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/utils.dart:11:26 • creation_with_non_type
+  error • Classes can only extend other classes • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/utils.dart:16:30 • extends_non_class
+  error • No associated named super constructor parameter • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/utils.dart:18:31 • super_formal_parameter_without_associated_named
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/utils.dart:21:3 • undefined_class
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/utils.dart:21:10 • override_on_non_overriding_member
+  error • Undefined class 'BuildContext' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/utils.dart:21:16 • undefined_class
+  error • The name 'SizedBox' isn't a class • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/utils.dart:22:18 • creation_with_non_type
+  error • Target of URI doesn't exist: 'package:flutter/widgets.dart' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview.dart:5:8 • uri_does_not_exist
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview.dart:34:9 • undefined_class
+  error • Target of URI doesn't exist: 'package:flutter/foundation.dart' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:7:8 • uri_does_not_exist
+  error • Target of URI doesn't exist: 'package:flutter/gestures.dart' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:8:8 • uri_does_not_exist
+  error • Target of URI doesn't exist: 'package:flutter/material.dart' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:9:8 • uri_does_not_exist
+  error • Target of URI doesn't exist: 'package:flutter/rendering.dart' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:10:8 • uri_does_not_exist
+  error • Target of URI doesn't exist: 'package:flutter/services.dart' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:11:8 • uri_does_not_exist
+  error • Classes can only extend other classes • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:25:41 • extends_non_class
+  error • Undefined class 'Size' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:39:9 • undefined_class
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:42:3 • undefined_class
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:42:10 • override_on_non_overriding_member
+  error • Undefined class 'BuildContext' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:42:16 • undefined_class
+  error • Undefined class 'TextStyle' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:43:11 • undefined_class
+  error • The method 'TextStyle' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:44:7 • undefined_method
+  error • Undefined name 'FontWeight' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:44:29 • undefined_identifier
+  error • The method 'SizedBox' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:47:12 • undefined_method
+  error • The method 'SingleChildScrollView' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:49:14 • undefined_method
+  error • The method 'Column' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:50:16 • undefined_method
+  error • Undefined name 'CrossAxisAlignment' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:51:31 • undefined_identifier
+  error • The name 'Widget' isn't a type, so it can't be used as a type argument • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:52:22 • non_type_as_type_argument
+  error • Undefined name 'Text' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:53:13 • undefined_identifier
+  error • The method 'TextSpan' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:54:15 • undefined_method
+  error • The name 'TextSpan' isn't a type, so it can't be used as a type argument • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:55:28 • non_type_as_type_argument
+  error • The method 'TextSpan' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:56:19 • undefined_method
+  error • The method 'TextSpan' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:61:19 • undefined_method
+  error • The method 'Text' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:65:13 • undefined_method
+  error • Undefined name 'SelectableText' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:67:13 • undefined_identifier
+  error • The method 'TextSpan' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:68:15 • undefined_method
+  error • The name 'TextSpan' isn't a type, so it can't be used as a type argument • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:76:8 • non_type_as_type_argument
+  error • Undefined class 'TextStyle' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:82:11 • undefined_class
+  error • The method 'TextStyle' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:83:7 • undefined_method
+  error • Undefined name 'TextDecoration' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:84:21 • undefined_identifier
+  error • The name 'Color' isn't a class • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:87:22 • creation_with_non_type
+  error • The name 'TextSpan' isn't a type, so it can't be used as a type argument • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:92:23 • non_type_as_type_argument
+  error • The method 'TextSpan' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:93:42 • undefined_method
+  error • The method 'TextSpan' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:94:14 • undefined_method
+  error • The name 'TextSpan' isn't a type, so it can't be used as a type argument • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:95:20 • non_type_as_type_argument
+  error • The method 'TextSpan' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:96:11 • undefined_method
+  error • The method 'TapGestureRecognizer' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:100:17 • undefined_method
+  error • The method 'TextSpan' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:105:11 • undefined_method
+  error • The name 'TextSpan' isn't a class • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:106:17 • creation_with_non_type
+  error • The method 'TextSpan' isn't defined for the type '_WidgetPreviewErrorWidget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:107:11 • undefined_method
+  error • Classes can only extend other classes • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:114:35 • extends_non_class
+  error • No associated named super constructor parameter • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:115:36 • super_formal_parameter_without_associated_named
+  error • Undefined class 'State' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:120:3 • undefined_class
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:120:30 • override_on_non_overriding_member
+  error • Classes can only extend other classes • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:123:41 • extends_non_class
+  error • The method 'TransformationController' isn't defined for the type '_WidgetPreviewWidgetState' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:124:36 • undefined_method
+  error • The method 'ValueNotifier' isn't defined for the type '_WidgetPreviewWidgetState' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:125:29 • undefined_method
+  error • The name 'Orientation' isn't a type, so it can't be used as a type argument • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:125:43 • non_type_as_type_argument
+  error • Undefined name 'Orientation' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:125:56 • undefined_identifier
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:128:8 • override_on_non_overriding_member
+  error • The method 'initState' isn't defined in a superclass of '_WidgetPreviewWidgetState' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:129:11 • undefined_super_member
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:133:3 • undefined_class
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:133:10 • override_on_non_overriding_member
+  error • Undefined class 'BuildContext' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:133:16 • undefined_class
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:143:5 • undefined_class
+  error • Undefined name 'widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:147:17 • undefined_identifier
+  error • The method 'SizedBox' isn't defined for the type '_WidgetPreviewWidgetState' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:159:14 • undefined_method
+  error • Undefined name 'widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:160:16 • undefined_identifier
+  error • Undefined name 'widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:161:17 • undefined_identifier
+  error • The method 'MediaQuery' isn't defined for the type '_WidgetPreviewWidgetState' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:166:15 • undefined_method
+  error • The method 'Column' isn't defined for the type '_WidgetPreviewWidgetState' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:168:15 • undefined_method
+  error • Undefined name 'CrossAxisAlignment' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:169:27 • undefined_identifier
+  error • Undefined name 'widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:171:13 • undefined_identifier
+  error • The method 'Text' isn't defined for the type '_WidgetPreviewWidgetState' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:172:11 • undefined_method
+  error • Undefined name 'widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:173:13 • undefined_identifier
+  error • The method 'TextStyle' isn't defined for the type '_WidgetPreviewWidgetState' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:175:15 • undefined_method
+  error • Undefined name 'FontWeight' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:175:51 • undefined_identifier
+  error • The method 'Row' isn't defined for the type '_WidgetPreviewWidgetState' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:185:9 • undefined_method
+  error • Undefined name 'MainAxisSize' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:186:25 • undefined_identifier
+  error • The method 'Padding' isn't defined for the type '_WidgetPreviewWidgetState' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:199:12 • undefined_method
+  error • The name 'all' isn't a class • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:200:22 • creation_with_non_type
+  error • The method 'Card' isn't defined for the type '_WidgetPreviewWidgetState' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:201:14 • undefined_method
+  error • The method 'Padding' isn't defined for the type '_WidgetPreviewWidgetState' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:202:16 • undefined_method
+  error • The name 'symmetric' isn't a class • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:203:26 • creation_with_non_type
+  error • Undefined class 'MediaQueryData' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:210:3 • undefined_class
+  error • Undefined name 'MediaQuery' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:211:26 • undefined_identifier
+  error • Undefined name 'context' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:211:40 • undefined_identifier
+  error • Undefined name 'widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:213:9 • undefined_identifier
+  error • Undefined name 'TextScaler' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:215:21 • undefined_identifier
+  error • Undefined name 'widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:215:39 • undefined_identifier
+  error • The method 'Size' isn't defined for the type '_WidgetPreviewWidgetState' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:219:16 • undefined_method
+  error • Undefined name 'widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:220:7 • undefined_identifier
+  error • Undefined name 'widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:221:7 • undefined_identifier
+  error • Undefined name 'widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:224:9 • undefined_identifier
+  error • Undefined name 'widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:224:41 • undefined_identifier
+  error • Classes can only extend other classes • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:237:48 • extends_non_class
+  error • No associated named super constructor parameter • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:239:11 • super_formal_parameter_without_associated_named
+  error • No associated named super constructor parameter • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:240:20 • super_formal_parameter_without_associated_named
+  error • Undefined class 'BoxConstraints' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:244:9 • undefined_class
+  error • Undefined class 'BoxConstraints' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:246:10 • undefined_class
+  error • Undefined class 'BuildContext' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:246:44 • undefined_class
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:260:8 • override_on_non_overriding_member
+  error • Classes can only extend other classes • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:265:40 • extends_non_class
+  error • No associated named super constructor parameter • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:267:11 • super_formal_parameter_without_associated_named
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:272:9 • undefined_class
+  error • Undefined class 'TransformationController' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:273:9 • undefined_class
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:276:3 • undefined_class
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:276:10 • override_on_non_overriding_member
+  error • Undefined class 'BuildContext' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:276:16 • undefined_class
+  error • The method 'InteractiveViewer' isn't defined for the type 'InteractiveViewerWrapper' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:277:12 • undefined_method
+  error • Classes can only extend other classes • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:289:37 • extends_non_class
+  error • No associated named super constructor parameter • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:291:11 • super_formal_parameter_without_associated_named
+  error • Undefined class 'BoxConstraints' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:296:9 • undefined_class
+  error • Undefined class 'RenderObject' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:299:3 • undefined_class
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:299:16 • override_on_non_overriding_member
+  error • Undefined class 'BuildContext' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:299:35 • undefined_class
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:307:8 • override_on_non_overriding_member
+  error • Undefined class 'BuildContext' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:308:5 • undefined_class
+  error • Classes can only extend other classes • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:316:40 • extends_non_class
+  error • Undefined class 'RenderBox' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:318:14 • undefined_class
+  error • Undefined class 'BoxConstraints' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:319:14 • undefined_class
+  error • Too many positional arguments: 0 expected, but 1 found • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:321:14 • extra_positional_arguments
+  error • Undefined class 'BoxConstraints' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:323:3 • undefined_class
+  error • The name 'BoxConstraints' isn't a class • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:323:46 • creation_with_non_type
+  error • Undefined class 'BoxConstraints' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:324:3 • undefined_class
+  error • Undefined class 'BoxConstraints' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:326:32 • undefined_class
+  error • The method 'markNeedsLayout' isn't defined for the type '_WidgetPreviewWrapperBox' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:331:5 • undefined_method
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:335:8 • override_on_non_overriding_member
+  error • Undefined class 'Constraints' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:335:15 • undefined_class
+  error • Undefined name 'child' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:336:9 • undefined_identifier
+  error • The name 'BoxConstraints' isn't defined, so it can't be used in an 'is' expression • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:336:41 • type_test_with_undefined_name
+  error • Undefined name 'child' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:339:31 • undefined_identifier
+  error • The name 'BoxConstraints' isn't a class • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:354:23 • creation_with_non_type
+  error • The method 'layout' isn't defined in a superclass of '_WidgetPreviewWrapperBox' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:356:11 • undefined_super_member
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:360:8 • override_on_non_overriding_member
+  error • The getter 'child' isn't defined for the type '_WidgetPreviewWrapperBox' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:361:24 • undefined_getter
+  error • Undefined name 'size' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:363:7 • undefined_identifier
+  error • Undefined name 'Size' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:363:14 • undefined_identifier
+  error • Undefined name 'constraints' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:366:60 • undefined_identifier
+  error • Undefined name 'size' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:368:5 • undefined_identifier
+  error • Undefined name 'constraints' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:368:12 • undefined_identifier
+  error • Classes can only extend other classes • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:374:34 • extends_non_class
+  error • The name 'ByteData' isn't a type, so it can't be used as a type argument • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:380:10 • non_type_as_type_argument
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:380:20 • override_on_non_overriding_member
+  error • The method 'load' isn't defined in a superclass of 'PreviewAssetBundle' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:388:20 • undefined_super_member
+  error • The method 'load' isn't defined in a superclass of 'PreviewAssetBundle' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:392:18 • undefined_super_member
+  error • The name 'ImmutableBuffer' isn't a type, so it can't be used as a type argument • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:396:10 • non_type_as_type_argument
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:396:27 • override_on_non_overriding_member
+  error • Undefined class 'ByteData' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:398:13 • undefined_class
+  error • Undefined name 'ImmutableBuffer' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:399:14 • undefined_identifier
+  error • Undefined name 'Uint8List' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:399:44 • undefined_identifier
+  error • Undefined name 'ImmutableBuffer' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:401:18 • undefined_identifier
+  error • The function 'runApp' isn't defined • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:413:3 • undefined_function
+  error • Classes can only extend other classes • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:419:38 • extends_non_class
+  error • Undefined class 'ValueNotifier' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:433:9 • undefined_class
+  error • The method 'ValueNotifier' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:433:53 • undefined_method
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:442:3 • undefined_class
+  error • The method 'SingleChildScrollView' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:443:12 • undefined_method
+  error • The method 'Wrap' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:444:14 • undefined_method
+  error • Undefined name 'WrapAlignment' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:447:20 • undefined_identifier
+  error • The name 'Widget' isn't a type, so it can't be used as a type argument • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:448:20 • non_type_as_type_argument
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:456:3 • undefined_class
+  error • Undefined name 'ListView' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:457:12 • undefined_identifier
+  error • The method 'Center' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:461:16 • undefined_method
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:466:3 • undefined_class
+  error • The method 'Positioned' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:467:12 • undefined_method
+  error • The method 'Container' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:470:14 • undefined_method
+  error • Undefined name 'EdgeInsets' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:471:18 • undefined_identifier
+  error • The method 'BoxDecoration' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:472:21 • undefined_method
+  error • Undefined name 'Colors' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:473:18 • undefined_identifier
+  error • Undefined name 'BorderRadius' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:474:25 • undefined_identifier
+  error • The method 'Column' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:476:16 • undefined_method
+  error • The method 'ValueListenableBuilder' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:478:13 • undefined_method
+  error • The method 'Column' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:481:24 • undefined_method
+  error • The method 'IconButton' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:483:21 • undefined_method
+  error • The method 'Icon' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:485:29 • undefined_method
+  error • Undefined name 'Icons' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:485:34 • undefined_identifier
+  error • Undefined name 'Colors' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:488:33 • undefined_identifier
+  error • Undefined name 'Colors' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:489:33 • undefined_identifier
+  error • The method 'IconButton' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:491:21 • undefined_method
+  error • The method 'Icon' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:493:29 • undefined_method
+  error • Undefined name 'Icons' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:493:34 • undefined_identifier
+  error • Undefined name 'Colors' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:496:33 • undefined_identifier
+  error • Undefined name 'Colors' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:497:33 • undefined_identifier
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:509:3 • undefined_class
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:509:28 • undefined_class
+  error • Undefined name 'Positioned' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:510:12 • undefined_identifier
+  error • The method 'Container' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:513:14 • undefined_method
+  error • Undefined name 'EdgeInsets' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:513:33 • undefined_identifier
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:518:3 • undefined_class
+warning • The method doesn't override an inherited method • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:518:10 • override_on_non_overriding_member
+  error • Undefined class 'BuildContext' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:518:16 • undefined_class
+  error • Undefined class 'Widget' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:520:5 • undefined_class
+  error • The method 'Column' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:522:21 • undefined_method
+  error • Undefined name 'MainAxisAlignment' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:523:28 • undefined_identifier
+  error • The name 'Widget' isn't a type, so it can't be used as a type argument • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:524:20 • non_type_as_type_argument
+  error • The method 'Center' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:525:11 • undefined_method
+  error • The method 'Text' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:528:20 • undefined_method
+  error • The method 'TextStyle' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:530:36 • undefined_method
+  error • Undefined name 'Colors' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:530:53 • undefined_identifier
+  error • The method 'LayoutBuilder' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:536:21 • undefined_method
+  error • Undefined class 'BuildContext' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:537:19 • undefined_class
+  error • Undefined class 'BoxConstraints' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:537:41 • undefined_class
+  error • The method 'ValueListenableBuilder' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:540:20 • undefined_method
+  error • The type 'dynamic' is not exhaustively matched by the switch cases since it doesn't match 'Object()' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:543:24 • non_exhaustive_switch_expression
+  error • The method 'MaterialApp' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:554:12 • undefined_method
+  error • The method 'Material' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:556:13 • undefined_method
+  error • Undefined name 'Colors' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:557:16 • undefined_identifier
+  error • The method 'DefaultAssetBundle' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:558:16 • undefined_method
+  error • The method 'Stack' isn't defined for the type '_WidgetPreviewScaffold' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/lib/src/widget_preview_rendering.dart:560:18 • undefined_method
+  error • Target of URI doesn't exist: 'package:flutter_test/flutter_test.dart' • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/test/template_change_detection_smoke_test.dart:7:8 • uri_does_not_exist
+  error • The function 'test' isn't defined • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/test/template_change_detection_smoke_test.dart:12:3 • undefined_function
+  error • The function 'fail' isn't defined • flutter/packages/flutter_tools/test/widget_preview_scaffold.shard/widget_preview_scaffold/test/template_change_detection_smoke_test.dart:26:7 • undefined_function
+   info • The imported package 'flutter_localizations' isn't a dependency of the importing package • lib/main.dart:2:8 • depend_on_referenced_packages
+  error • Target of URI doesn't exist: 'package:flutter_localizations/flutter_localizations.dart' • lib/main.dart:2:8 • uri_does_not_exist
+  error • The values in a const list literal must be constants • lib/main.dart:25:9 • non_constant_list_element
+  error • Undefined name 'GlobalMaterialLocalizations' • lib/main.dart:25:9 • undefined_identifier
+  error • The values in a const list literal must be constants • lib/main.dart:26:9 • non_constant_list_element
+  error • Undefined name 'GlobalWidgetsLocalizations' • lib/main.dart:26:9 • undefined_identifier
+  error • The values in a const list literal must be constants • lib/main.dart:27:9 • non_constant_list_element
+  error • Undefined name 'GlobalCupertinoLocalizations' • lib/main.dart:27:9 • undefined_identifier
+   info • 'Share' is deprecated and shouldn't be used. Use SharePlus instead • lib/screens/dashboard/congratulations_screen.dart:354:29 • deprecated_member_use
+   info • 'share' is deprecated and shouldn't be used. Use SharePlus.instance.share() instead • lib/screens/dashboard/congratulations_screen.dart:354:35 • deprecated_member_use
+

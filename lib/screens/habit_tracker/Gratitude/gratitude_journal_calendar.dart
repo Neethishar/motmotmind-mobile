@@ -6,7 +6,8 @@ class GratitudeJournalCalendar extends StatefulWidget {
   const GratitudeJournalCalendar({super.key});
 
   @override
-  State<GratitudeJournalCalendar> createState() => _GratitudeJournalCalendarState();
+  State<GratitudeJournalCalendar> createState() =>
+      _GratitudeJournalCalendarState();
 }
 
 class _GratitudeJournalCalendarState extends State<GratitudeJournalCalendar> {
@@ -28,7 +29,8 @@ class _GratitudeJournalCalendarState extends State<GratitudeJournalCalendar> {
 
   Future<void> loadCompletedDays() async {
     final prefs = await SharedPreferences.getInstance();
-    final savedList = prefs.getStringList('gratitude_completed_$monthKey') ?? [];
+    final savedList =
+        prefs.getStringList('gratitude_completed_$monthKey') ?? [];
     setState(() {
       completedDays = savedList.map(int.parse).toList();
     });
@@ -211,10 +213,7 @@ class _GratitudeJournalCalendarState extends State<GratitudeJournalCalendar> {
               alignment: Alignment.center,
               child: Text(
                 "$dayNum",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: textColor,
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, color: textColor),
               ),
             );
           }),

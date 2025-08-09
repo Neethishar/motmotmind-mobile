@@ -7,7 +7,12 @@ class StartMoodTracker extends StatelessWidget {
     Navigator.pushNamed(context, route);
   }
 
-  Widget _navButton(BuildContext context, String iconPath, String label, String route) {
+  Widget _navButton(
+    BuildContext context,
+    String iconPath,
+    String label,
+    String route,
+  ) {
     return GestureDetector(
       onTap: () => navigateTo(context, route),
       child: Column(
@@ -55,7 +60,10 @@ class StartMoodTracker extends StatelessWidget {
                   Row(
                     children: [
                       IconButton(
-                        icon: Image.asset('assets/notification_icon.png', height: 24),
+                        icon: Image.asset(
+                          'assets/notification_icon.png',
+                          height: 24,
+                        ),
                         onPressed: () => navigateTo(context, '/notifications'),
                       ),
                       IconButton(
@@ -148,8 +156,18 @@ class StartMoodTracker extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _navButton(context, 'assets/today_icon.png', "Today", "/today"),
-                  _navButton(context, 'assets/tracker_icon.png', "Tracker", "/tracker"),
+                  _navButton(
+                    context,
+                    'assets/today_icon.png',
+                    "Today",
+                    "/today",
+                  ),
+                  _navButton(
+                    context,
+                    'assets/tracker_icon.png',
+                    "Tracker",
+                    "/tracker",
+                  ),
                 ],
               ),
             ],

@@ -6,7 +6,8 @@ class DrinkWaterCalendarScreen extends StatefulWidget {
   const DrinkWaterCalendarScreen({super.key});
 
   @override
-  State<DrinkWaterCalendarScreen> createState() => _DrinkWaterCalendarScreenState();
+  State<DrinkWaterCalendarScreen> createState() =>
+      _DrinkWaterCalendarScreenState();
 }
 
 class _DrinkWaterCalendarScreenState extends State<DrinkWaterCalendarScreen> {
@@ -28,7 +29,8 @@ class _DrinkWaterCalendarScreenState extends State<DrinkWaterCalendarScreen> {
 
   Future<void> loadCompletedDays() async {
     final prefs = await SharedPreferences.getInstance();
-    final completedList = prefs.getStringList('drink_water_completed_$monthKey') ?? [];
+    final completedList =
+        prefs.getStringList('drink_water_completed_$monthKey') ?? [];
     setState(() {
       completedDays = completedList.map(int.parse).toList();
     });
@@ -183,7 +185,10 @@ class _DrinkWaterCalendarScreenState extends State<DrinkWaterCalendarScreen> {
                 children: [
                   Image.asset('assets/today_icon.png', height: 28),
                   const SizedBox(height: 4),
-                  const Text("Today", style: TextStyle(fontSize: 12, color: Color(0xFFFF6D2C))),
+                  const Text(
+                    "Today",
+                    style: TextStyle(fontSize: 12, color: Color(0xFFFF6D2C)),
+                  ),
                 ],
               ),
             ),
@@ -194,7 +199,10 @@ class _DrinkWaterCalendarScreenState extends State<DrinkWaterCalendarScreen> {
                 children: [
                   Image.asset('assets/mood_tracker.png', height: 28),
                   const SizedBox(height: 4),
-                  const Text("Mood", style: TextStyle(fontSize: 12, color: Colors.grey)),
+                  const Text(
+                    "Mood",
+                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
                 ],
               ),
             ),

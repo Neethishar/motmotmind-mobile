@@ -44,11 +44,9 @@ class _CalendarPageState extends State<CalendarPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: const Icon(Icons.menu, color: Colors.black),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
         ),
         actions: [
           IconButton(
@@ -61,7 +59,6 @@ class _CalendarPageState extends State<CalendarPage> {
           ),
         ],
       ),
-      drawer: const Drawer(),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(

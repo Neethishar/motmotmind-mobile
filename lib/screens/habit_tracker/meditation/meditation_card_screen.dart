@@ -94,9 +94,7 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
 
     try {
       final response = await http.post(
-        Uri.parse(
-          'http://10.0.2.2:5002/api/meditation',
-        ), // ✅ Ensure backend is running
+        Uri.parse('http://10.0.2.2:5002/api/meditation'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'userId': 'asta_black',
@@ -137,15 +135,12 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
-      drawer: const Drawer(),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: const Icon(Icons.menu, color: Color(0xFFFF6D2C)),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Color(0xFFFF6D2C)),
+          onPressed: () => Navigator.pop(context),
         ),
         actions: [
           IconButton(

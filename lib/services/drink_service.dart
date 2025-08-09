@@ -1,10 +1,18 @@
 import 'dart:convert';
+import 'dart:io'; // For Platform checks
+
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const String baseUrl = "http://10.0.2.2:5005/api/drink"; // ✅ Drink Water API
 final logger = Logger();
+
+/// Get Platform-Specific Base URL
+String getBaseUrl() {
+  return Platform.isAndroid
+      ? "http://10.0.2.2:5005/api/drink"
+      : "http://localhost:5005/api/drink";
+}
 
 /// Save Drink Water Log to Backend
 Future<bool> saveDrinkWaterLog({
@@ -14,7 +22,7 @@ Future<bool> saveDrinkWaterLog({
 }) async {
   try {
     final response = await http.post(
-      Uri.parse(baseUrl),
+      Uri.parse(getBaseUrl()),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'userId': userId,
@@ -27,7 +35,9 @@ Future<bool> saveDrinkWaterLog({
       logger.i("✅ Drink Water log saved successfully");
       return true;
     } else {
-      logger.e("❌ Failed to save drink log: ${response.statusCode} → ${response.body}");
+      logger.e(
+        "❌ Failed to save drink log: ${response.statusCode} → ${response.body}",
+      );
       return false;
     }
   } catch (e) {

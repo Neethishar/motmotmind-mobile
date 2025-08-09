@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io'; // Needed for Platform.isAndroid / isIOS
+
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,7 +8,9 @@ import 'package:intl/intl.dart';
 
 final logger = Logger();
 
-const String baseUrl = "http://10.0.2.2:5004/api/gratitude"; // ✅ Localhost for Android emulator
+final String baseUrl = Platform.isAndroid
+    ? "http://10.0.2.2:5004/api/gratitude"
+    : "http://localhost:5004/api/gratitude"; // iOS simulator
 
 class GratitudeService {
   /// Save today's gratitude entry
@@ -24,10 +28,7 @@ class GratitudeService {
       final response = await http.post(
         Uri.parse(baseUrl),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'text': text,
-          'date': today,
-        }),
+        body: jsonEncode({'text': text, 'date': today}),
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -39,7 +40,9 @@ class GratitudeService {
 
         return true;
       } else {
-        logger.e("❌ Failed to save gratitude: ${response.statusCode} → ${response.body}");
+        logger.e(
+          "❌ Failed to save gratitude: ${response.statusCode} → ${response.body}",
+        );
         return false;
       }
     } catch (e) {
@@ -67,8 +70,9 @@ class GratitudeService {
     final List<int> completedDays = [];
 
     for (int i = 0; i < 21; i++) {
-      final date = DateFormat('yyyy-MM-dd')
-          .format(DateTime.now().subtract(Duration(days: i)));
+      final date = DateFormat('yyyy-MM-dd').format(
+        DateTime.now().subtract(Duration(days: i)),
+      );
       final dayIndex = 21 - i;
 
       if (savedDate == date) {
@@ -93,7 +97,9 @@ class GratitudeService {
           };
         }).toList();
       } else {
-        logger.e("❌ Failed to fetch gratitude history: ${response.statusCode}");
+        logger.e(
+          "❌ Failed to fetch gratitude history: ${response.statusCode}",
+        );
         return [];
       }
     } catch (e) {

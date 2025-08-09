@@ -89,9 +89,11 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true, // ✅ allows body to resize when keyboard opens
       backgroundColor: const Color(0xFFF5F7FA),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
@@ -99,11 +101,11 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Builder(
-                    builder: (context) => IconButton(
-                      icon: const Icon(Icons.menu),
-                      onPressed: () => Scaffold.of(context).openDrawer(),
-                    ),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
                   Row(
                     children: [
@@ -167,160 +169,150 @@ class _MoodCheckInScreenState extends State<MoodCheckInScreen> {
                 ),
               ),
 
-              /// Scrollable content
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      /// Mood Selector
-                      _card(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Mood Selector",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: moodEmojis.map((mood) {
-                                final label = mood['label']!;
-                                final isSelected = selectedMood == label;
-                                return GestureDetector(
-                                  onTap: () =>
-                                      setState(() => selectedMood = label),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        mood['emoji']!,
-                                        style: TextStyle(
-                                          fontSize: 26,
-                                          color: isSelected
-                                              ? Colors.orange
-                                              : Colors.black,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 4),
-                                      Text(
-                                        label,
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: isSelected
-                                              ? FontWeight.bold
-                                              : FontWeight.normal,
-                                          color: isSelected
-                                              ? Colors.orange
-                                              : Colors.black,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }).toList(),
-                            ),
-                          ],
-                        ),
+              /// Mood Selector
+              _card(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Mood Selector",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
                       ),
-
-                      /// Mood Factors
-                      _card(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "What influenced your mood?",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(height: 12),
-                            Wrap(
-                              spacing: 8,
-                              runSpacing: 8,
-                              children: moodFactors.map((factor) {
-                                final isSelected = selectedFactors.contains(
-                                  factor,
-                                );
-                                return ChoiceChip(
-                                  label: Text(factor),
-                                  selected: isSelected,
-                                  selectedColor: const Color(0xFFD9D9D9),
-                                  backgroundColor: const Color(0xFFD9D9D9),
-                                  onSelected: (selected) {
-                                    setState(() {
-                                      selected
-                                          ? selectedFactors.add(factor)
-                                          : selectedFactors.remove(factor);
-                                    });
-                                  },
-                                );
-                              }).toList(),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      /// Notes
-                      _card(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Add a note",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(height: 8),
-                            TextField(
-                              controller: _noteController,
-                              maxLines: 4,
-                              decoration: const InputDecoration(
-                                hintText: 'Write here...',
-                                border: OutlineInputBorder(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      const SizedBox(height: 12),
-
-                      /// Save Button
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFFF6D2C),
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          onPressed: () {
-                            if (selectedMood == null) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text("Please select your mood."),
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: moodEmojis.map((mood) {
+                        final label = mood['label']!;
+                        final isSelected = selectedMood == label;
+                        return GestureDetector(
+                          onTap: () => setState(() => selectedMood = label),
+                          child: Column(
+                            children: [
+                              Text(
+                                mood['emoji']!,
+                                style: TextStyle(
+                                  fontSize: 26,
+                                  color: isSelected ? Colors.orange : Colors.black,
                                 ),
-                              );
-                              return;
-                            }
-                            saveMoodCheckIn();
-                          },
-                          child: const Text(
-                            "Save Mood Check-in",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                label,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight:
+                                      isSelected ? FontWeight.bold : FontWeight.normal,
+                                  color: isSelected ? Colors.orange : Colors.black,
+                                ),
+                              ),
+                            ],
                           ),
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
+              ),
+
+              /// Mood Factors
+              _card(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "What influenced your mood?",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 12),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: moodFactors.map((factor) {
+                        final isSelected = selectedFactors.contains(factor);
+                        return ChoiceChip(
+                          label: Text(factor),
+                          selected: isSelected,
+                          selectedColor: const Color(0xFFD9D9D9),
+                          backgroundColor: const Color(0xFFD9D9D9),
+                          onSelected: (selected) {
+                            setState(() {
+                              selected
+                                  ? selectedFactors.add(factor)
+                                  : selectedFactors.remove(factor);
+                            });
+                          },
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
+              ),
+
+              /// Notes
+              _card(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Add a note",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 8),
+                    SizedBox(
+                      height: 120,
+                      child: TextField(
+                        controller: _noteController,
+                        expands: true,
+                        maxLines: null,
+                        textInputAction: TextInputAction.newline,
+                        decoration: const InputDecoration(
+                          hintText: 'Write here...',
+                          border: OutlineInputBorder(),
                         ),
                       ),
-                    ],
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 12),
+
+              /// Save Button
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFFF6D2C),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  onPressed: () {
+                    if (selectedMood == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Please select your mood."),
+                        ),
+                      );
+                      return;
+                    }
+                    saveMoodCheckIn();
+                  },
+                  child: const Text(
+                    "Save Mood Check-in",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
+
+              const SizedBox(height: 40), // ✅ extra space so button isn't covered by keyboard
             ],
           ),
         ),

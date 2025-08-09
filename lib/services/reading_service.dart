@@ -1,9 +1,13 @@
 import 'dart:convert';
+import 'dart:io'; // ✅ Required for Platform checks
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const String baseUrl = "http://10.0.2.2:5003/api/reading"; // ✅ Emulator IP for reading backend
+final String baseUrl = Platform.isAndroid
+    ? "http://10.0.2.2:5003/api/reading" // Android Emulator
+    : "http://localhost:5003/api/reading"; // iOS Simulator
+
 final logger = Logger();
 
 class ReadingService {
@@ -33,7 +37,9 @@ class ReadingService {
         logger.i("✅ Reading session saved successfully");
         return true;
       } else {
-        logger.e("❌ Failed to save reading session: ${response.statusCode} → ${response.body}");
+        logger.e(
+          "❌ Failed to save reading session: ${response.statusCode} → ${response.body}",
+        );
         return false;
       }
     } catch (e) {
@@ -52,7 +58,7 @@ class ReadingService {
   static Future<int> incrementCompletedDays() async {
     final prefs = await SharedPreferences.getInstance();
     int current = prefs.getInt(_dayKey) ?? 0;
-    current = current + 1;
+    current += 1;
     await prefs.setInt(_dayKey, current);
     return current;
   }

@@ -26,7 +26,12 @@ class CongratulationsScreen extends StatelessWidget {
     Navigator.pushNamed(context, route);
   }
 
-  Widget _navButton(BuildContext context, String iconPath, String label, String route) {
+  Widget _navButton(
+    BuildContext context,
+    String iconPath,
+    String label,
+    String route,
+  ) {
     return GestureDetector(
       onTap: () => navigateTo(context, route),
       child: Column(
@@ -42,7 +47,9 @@ class CongratulationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mostCommonMood = moodStats.entries.reduce((a, b) => a.value > b.value ? a : b);
+    final mostCommonMood = moodStats.entries.reduce(
+      (a, b) => a.value > b.value ? a : b,
+    );
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
@@ -64,20 +71,49 @@ class CongratulationsScreen extends StatelessWidget {
                     const SizedBox(height: 12),
                     const Text(
                       "Asta Black",
-                      style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
               ),
               const SizedBox(height: 40),
-              _drawerMenuItem(context, 'assets/Rewards.png', 'Rewards', '/rewards'),
-              _drawerMenuItem(context, 'assets/Refer Friends.png', 'Refer Friends', '/refer'),
-              _drawerMenuItem(context, 'assets/Leaderboard.png', 'Leaderboard', '/leaderboard'),
-              _drawerMenuItem(context, 'assets/App Settings.png', 'App Settings', '/settings'),
+              _drawerMenuItem(
+                context,
+                'assets/Rewards.png',
+                'Rewards',
+                '/rewards',
+              ),
+              _drawerMenuItem(
+                context,
+                'assets/Refer Friends.png',
+                'Refer Friends',
+                '/refer',
+              ),
+              _drawerMenuItem(
+                context,
+                'assets/Leaderboard.png',
+                'Leaderboard',
+                '/leaderboard',
+              ),
+              _drawerMenuItem(
+                context,
+                'assets/App Settings.png',
+                'App Settings',
+                '/settings',
+              ),
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.only(bottom: 24.0),
-                child: _drawerMenuItem(context, 'assets/Logout.png', 'Logout', '/sign_in'),
+                child: _drawerMenuItem(
+                  context,
+                  'assets/Logout.png',
+                  'Logout',
+                  '/sign_in',
+                ),
               ),
             ],
           ),
@@ -105,7 +141,10 @@ class CongratulationsScreen extends StatelessWidget {
                   Row(
                     children: [
                       IconButton(
-                        icon: Image.asset('assets/notification_icon.png', height: 24),
+                        icon: Image.asset(
+                          'assets/notification_icon.png',
+                          height: 24,
+                        ),
                         onPressed: () => navigateTo(context, '/notifications'),
                       ),
                       IconButton(
@@ -134,26 +173,41 @@ class CongratulationsScreen extends StatelessWidget {
                               ),
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 24,
+                              horizontal: 16,
+                            ),
                             child: Column(
                               children: [
-                                Image.asset('assets/mood_tracker.png', height: 80),
+                                Image.asset(
+                                  'assets/mood_tracker.png',
+                                  height: 80,
+                                ),
                                 const SizedBox(height: 12),
                                 const Text(
                                   "You’ve completed the 21-Day\nMood tracker Challenge!",
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                                 const SizedBox(height: 8),
                                 const Text(
                                   "Great job showing up every day! Here’s what your mood journey looks like.",
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 14, color: Colors.black87),
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black87,
+                                  ),
                                 ),
                                 const SizedBox(height: 16),
                                 Column(
                                   children: [
-                                    Image.asset('assets/reward_icon.png', height: 40),
+                                    Image.asset(
+                                      'assets/reward_icon.png',
+                                      height: 40,
+                                    ),
                                     const SizedBox(height: 4),
                                     const Text(
                                       "25 Coins",
@@ -168,8 +222,22 @@ class CongratulationsScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          Positioned(left: 0, top: 0, child: Image.asset("assets/celebration 1.png", height: 60)),
-                          Positioned(right: 0, top: 0, child: Image.asset("assets/celebration 2.png", height: 60)),
+                          Positioned(
+                            left: 0,
+                            top: 0,
+                            child: Image.asset(
+                              "assets/celebration 1.png",
+                              height: 60,
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            child: Image.asset(
+                              "assets/celebration 2.png",
+                              height: 60,
+                            ),
+                          ),
                         ],
                       ),
                       const SizedBox(height: 24),
@@ -187,8 +255,12 @@ class CongratulationsScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              moodStats.entries.map((e) => '${e.key} ×${e.value}').join('   '),
-                              style: const TextStyle(fontWeight: FontWeight.w600),
+                              moodStats.entries
+                                  .map((e) => '${e.key} ×${e.value}')
+                                  .join('   '),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                             const SizedBox(height: 12),
                             SizedBox(
@@ -208,11 +280,20 @@ class CongratulationsScreen extends StatelessWidget {
                                         getTitlesWidget: (value, _) {
                                           final index = value.toInt();
                                           if (index < moodStats.keys.length) {
-                                            final mood = moodStats.keys.elementAt(index);
+                                            final mood = moodStats.keys
+                                                .elementAt(index);
                                             return Column(
                                               children: [
-                                                Image.asset(moodIcons[mood]!, height: 24),
-                                                Text(mood, style: const TextStyle(fontSize: 10)),
+                                                Image.asset(
+                                                  moodIcons[mood]!,
+                                                  height: 24,
+                                                ),
+                                                Text(
+                                                  mood,
+                                                  style: const TextStyle(
+                                                    fontSize: 10,
+                                                  ),
+                                                ),
                                               ],
                                             );
                                           }
@@ -222,25 +303,31 @@ class CongratulationsScreen extends StatelessWidget {
                                     ),
                                   ),
                                   borderData: FlBorderData(show: false),
-                                  barGroups: moodStats.entries.toList().asMap().entries.map(
-                                    (entry) {
-                                      final moodCount = entry.value.value;
-                                      return BarChartGroupData(
-                                        x: entry.key,
-                                        barRods: [
-                                          BarChartRodData(
-                                            toY: moodCount.toDouble(),
-                                            width: 18,
-                                            gradient: LinearGradient(colors: [
-                                              Colors.orange.shade400,
-                                              Colors.deepOrange.shade400,
-                                            ]),
-                                            borderRadius: BorderRadius.circular(6),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ).toList(),
+                                  barGroups: moodStats.entries
+                                      .toList()
+                                      .asMap()
+                                      .entries
+                                      .map((entry) {
+                                        final moodCount = entry.value.value;
+                                        return BarChartGroupData(
+                                          x: entry.key,
+                                          barRods: [
+                                            BarChartRodData(
+                                              toY: moodCount.toDouble(),
+                                              width: 18,
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  Colors.orange.shade400,
+                                                  Colors.deepOrange.shade400,
+                                                ],
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
+                                            ),
+                                          ],
+                                        );
+                                      })
+                                      .toList(),
                                 ),
                               ),
                             ),
@@ -252,7 +339,10 @@ class CongratulationsScreen extends StatelessWidget {
                       // Mood summary
                       Text(
                         "Most common mood: ${mostCommonMood.key} (${mostCommonMood.value} days)",
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
                       ),
                       const SizedBox(height: 24),
 
@@ -270,7 +360,10 @@ class CongratulationsScreen extends StatelessWidget {
                             backgroundColor: const Color(0xFFFF6D2C),
                             padding: const EdgeInsets.symmetric(vertical: 16),
                           ),
-                          child: const Text("Share Your Progress", style: TextStyle(color: Colors.white)),
+                          child: const Text(
+                            "Share Your Progress",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -283,8 +376,18 @@ class CongratulationsScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _navButton(context, 'assets/today_icon.png', "Today", "/today"),
-                  _navButton(context, 'assets/tracker_icon.png', "Tracker", "/tracker"),
+                  _navButton(
+                    context,
+                    'assets/today_icon.png',
+                    "Today",
+                    "/today",
+                  ),
+                  _navButton(
+                    context,
+                    'assets/tracker_icon.png',
+                    "Tracker",
+                    "/tracker",
+                  ),
                 ],
               ),
             ],
@@ -294,7 +397,12 @@ class CongratulationsScreen extends StatelessWidget {
     );
   }
 
-  Widget _drawerMenuItem(BuildContext context, String iconPath, String label, String route) {
+  Widget _drawerMenuItem(
+    BuildContext context,
+    String iconPath,
+    String label,
+    String route,
+  ) {
     return ListTile(
       leading: Image.asset(iconPath, height: 28),
       title: Text(

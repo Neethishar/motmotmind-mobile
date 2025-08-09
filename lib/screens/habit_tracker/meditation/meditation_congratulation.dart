@@ -5,10 +5,12 @@ class MeditationCongratulationsPage extends StatefulWidget {
   const MeditationCongratulationsPage({super.key});
 
   @override
-  State<MeditationCongratulationsPage> createState() => _MeditationCongratulationsPageState();
+  State<MeditationCongratulationsPage> createState() =>
+      _MeditationCongratulationsPageState();
 }
 
-class _MeditationCongratulationsPageState extends State<MeditationCongratulationsPage> {
+class _MeditationCongratulationsPageState
+    extends State<MeditationCongratulationsPage> {
   int completedDays = 0;
 
   @override
@@ -64,13 +66,19 @@ class _MeditationCongratulationsPageState extends State<MeditationCongratulation
                   const SizedBox(height: 8),
                   Text(
                     "“Well done on completing Day $completedDays!”",
-                    style: const TextStyle(fontSize: 16, color: Color(0xFF333333)),
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Color(0xFF333333),
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 4),
                   Text(
                     "Stay mindful for the next ${21 - completedDays} days!",
-                    style: const TextStyle(fontSize: 14, color: Color(0xFF333333)),
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Color(0xFF333333),
+                    ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),

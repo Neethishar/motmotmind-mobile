@@ -183,7 +183,10 @@ class GratitudeJournalScreen extends StatelessWidget {
             /// No `.toList()` used here — spread directly
             ...[
               {"text": "I had a peaceful morning.", "date": "Jul 11"},
-              {"text": "My family and friends are supportive", "date": "Jul 10"},
+              {
+                "text": "My family and friends are supportive",
+                "date": "Jul 10",
+              },
               {"text": "Finished a major task early.", "date": "Jul 9"},
               {"text": "Enjoyed a walk in nature.", "date": "Jul 8"},
             ].map((item) {

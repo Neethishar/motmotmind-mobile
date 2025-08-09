@@ -4,8 +4,9 @@ import 'dart:convert';
 class MoodStorage {
   static Future<void> saveMood(int day, String emojiPath) async {
     final prefs = await SharedPreferences.getInstance();
-    Map<String, String> moods =
-        Map<String, String>.from(json.decode(prefs.getString('moods') ?? '{}'));
+    Map<String, String> moods = Map<String, String>.from(
+      json.decode(prefs.getString('moods') ?? '{}'),
+    );
     moods[day.toString()] = emojiPath;
     await prefs.setString('moods', json.encode(moods));
   }

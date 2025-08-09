@@ -1,9 +1,14 @@
 import 'dart:convert';
+import 'dart:io'; // Required for Platform checks
+
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const String baseUrl = "http://10.0.2.2:5007/api/digital"; // ✅ Backend route
+final String baseUrl = Platform.isAndroid
+    ? "http://10.0.2.2:5007/api/digital" // Android Emulator uses 10.0.2.2
+    : "http://localhost:5007/api/digital"; // iOS simulator uses localhost
+
 final logger = Logger();
 
 Future<bool> saveDigitalDetox({
@@ -30,7 +35,9 @@ Future<bool> saveDigitalDetox({
       logger.i("✅ Digital Detox saved successfully");
       return true;
     } else {
-      logger.e("❌ Failed to save digital detox: ${response.statusCode} → ${response.body}");
+      logger.e(
+        "❌ Failed to save digital detox: ${response.statusCode} → ${response.body}",
+      );
       return false;
     }
   } catch (e) {

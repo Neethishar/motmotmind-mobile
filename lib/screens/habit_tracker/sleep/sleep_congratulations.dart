@@ -34,11 +34,7 @@ class SleepBy10CongratulationsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 20),
-                  Image.asset(
-                    'assets/sleep.png',
-                    height: 60,
-                    width: 60,
-                  ),
+                  Image.asset('assets/sleep.png', height: 60, width: 60),
                   const SizedBox(height: 20),
                   Text(
                     "Sleep Day $completedDays Complete",
@@ -52,19 +48,13 @@ class SleepBy10CongratulationsScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   const Text(
                     "“Great job on completing today's sleep goal!”",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xFF333333),
-                    ),
+                    style: TextStyle(fontSize: 16, color: Color(0xFF333333)),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 4),
                   const Text(
                     "You're one step closer to healthy sleep habits.",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Color(0xFF333333),
-                    ),
+                    style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 20),

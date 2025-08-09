@@ -56,11 +56,9 @@ class _ReadingBooksScreenState extends State<ReadingBooksScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: const Icon(Icons.menu, color: Color(0xFFFF6D2C)),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFFFF6D2C)),
+          onPressed: () => Navigator.pop(context),
         ),
         actions: [
           IconButton(
@@ -73,7 +71,6 @@ class _ReadingBooksScreenState extends State<ReadingBooksScreen> {
           ),
         ],
       ),
-      drawer: const Drawer(),
 
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

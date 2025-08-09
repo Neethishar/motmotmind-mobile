@@ -52,10 +52,7 @@ class SplashScreen extends StatelessWidget {
               child: Text(
                 'Track your mood, build habits, and stay aligned with your daily mental wellness goals.',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.black54,
-                ),
+                style: TextStyle(fontSize: 14, color: Colors.black54),
               ),
             ),
 
@@ -64,7 +61,8 @@ class SplashScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: ElevatedButton(
-                onPressed: () => navigateToSignUp(context), // ✅ Navigate to SignUpScreen
+                onPressed: () =>
+                    navigateToSignUp(context), // ✅ Navigate to SignUpScreen
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFFF6D2C),
                   minimumSize: const Size.fromHeight(52),

@@ -22,9 +22,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
   Future<void> _verifyOtp() async {
     final otp = _otpController.text.trim();
     if (otp.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter OTP')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please enter OTP')));
       return;
     }
 
@@ -59,11 +59,14 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8),
-                    Text(widget.email,
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16)),
+                    Text(
+                      widget.email,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
                     const SizedBox(height: 16),
                     TextButton(
                       onPressed: () => resendOtp(widget.email),
