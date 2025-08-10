@@ -7,11 +7,9 @@ class GratitudeJournalScreen extends StatelessWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: Builder(
-        builder: (context) => IconButton(
-          icon: const Icon(Icons.menu, color: Colors.black),
-          onPressed: () => Scaffold.of(context).openDrawer(),
-        ),
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back, color: Colors.black),
+        onPressed: () => Navigator.pop(context),
       ),
       actions: [
         IconButton(
@@ -43,7 +41,7 @@ class GratitudeJournalScreen extends StatelessWidget {
                   "Today",
                   style: TextStyle(
                     fontSize: 12,
-                    color: selectedIndex == 0 ? Color(0xFFFF6D2C) : Colors.grey,
+                    color: selectedIndex == 0 ? const Color(0xFFFF6D2C) : Colors.grey,
                   ),
                 ),
               ],
@@ -60,7 +58,7 @@ class GratitudeJournalScreen extends StatelessWidget {
                   "Mood",
                   style: TextStyle(
                     fontSize: 12,
-                    color: selectedIndex == 1 ? Color(0xFFFF6D2C) : Colors.grey,
+                    color: selectedIndex == 1 ? const Color(0xFFFF6D2C) : Colors.grey,
                   ),
                 ),
               ],
@@ -78,7 +76,6 @@ class GratitudeJournalScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
       appBar: buildCommonAppBar(context),
-      drawer: const Drawer(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Column(
@@ -113,7 +110,7 @@ class GratitudeJournalScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 6),
                         Text(
-                          "Day 1 of 21 – How are you feeling today?",
+                          "How are you feeling today?",
                           style: TextStyle(
                             fontSize: 14,
                             color: Color(0xFF333333),
@@ -180,7 +177,7 @@ class GratitudeJournalScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
 
-            /// No `.toList()` used here — spread directly
+            /// Gratitude history list
             ...[
               {"text": "I had a peaceful morning.", "date": "Jul 11"},
               {

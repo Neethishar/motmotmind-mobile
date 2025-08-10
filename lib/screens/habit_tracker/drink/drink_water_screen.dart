@@ -1,5 +1,3 @@
-// Updated DrinkWaterScreen with improved logic for tracking 4 logs per day
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:intl/intl.dart';
@@ -69,9 +67,8 @@ class _DrinkWaterScreenState extends State<DrinkWaterScreen> {
     }
 
     if (!mounted) return;
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text("✅ Log saved successfully.")));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text("✅ Log saved successfully.")));
 
     setState(() {
       savedLogsCount = completed;
@@ -86,11 +83,9 @@ class _DrinkWaterScreenState extends State<DrinkWaterScreen> {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: Builder(
-        builder: (context) => IconButton(
-          icon: const Icon(Icons.menu, color: Colors.black),
-          onPressed: () => Scaffold.of(context).openDrawer(),
-        ),
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back, color: Colors.black),
+        onPressed: () => Navigator.pop(context),
       ),
       actions: [
         IconButton(
@@ -120,7 +115,7 @@ class _DrinkWaterScreenState extends State<DrinkWaterScreen> {
                 "Today",
                 style: TextStyle(
                   fontSize: 12,
-                  color: selectedIndex == 0 ? Color(0xFFFF6D2C) : Colors.grey,
+                  color: selectedIndex == 0 ? const Color(0xFFFF6D2C) : Colors.grey,
                 ),
               ),
             ],
@@ -137,7 +132,7 @@ class _DrinkWaterScreenState extends State<DrinkWaterScreen> {
                 "Mood",
                 style: TextStyle(
                   fontSize: 12,
-                  color: selectedIndex == 1 ? Color(0xFFFF6D2C) : Colors.grey,
+                  color: selectedIndex == 1 ? const Color(0xFFFF6D2C) : Colors.grey,
                 ),
               ),
             ],
@@ -154,7 +149,6 @@ class _DrinkWaterScreenState extends State<DrinkWaterScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
       appBar: buildCommonAppBar(context),
-      drawer: const Drawer(),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 16),
         child: buildCommonBottomNav(context),

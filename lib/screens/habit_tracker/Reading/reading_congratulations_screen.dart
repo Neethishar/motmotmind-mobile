@@ -53,7 +53,7 @@ class ReadingCongratulationsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   const Text(
-                    "Keep going to complete all 21 days",
+                    "Keep going",
                     style: TextStyle(fontSize: 14, color: Color(0xFF333333)),
                     textAlign: TextAlign.center,
                   ),
