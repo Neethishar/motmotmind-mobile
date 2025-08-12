@@ -15,10 +15,8 @@ class _TodayScreenState extends State<TodayScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
     final args =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
-
     if (args != null && args.containsKey('username')) {
       username = args['username'];
     } else {
@@ -36,38 +34,50 @@ class _TodayScreenState extends State<TodayScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final mediaPadding = MediaQuery.of(context).padding;
 
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xFFF5F7FA),
       drawer: const Drawer(child: Center(child: Text("Drawer Menu"))),
       bottomNavigationBar: _buildBottomNav(),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(), // ✅ Smooth iOS scroll
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildHeader(),
-              const SizedBox(height: 20),
-              _buildGreeting(username),
-              const SizedBox(height: 30),
-              _buildMoodCard(screenWidth),
-              const SizedBox(height: 30),
-              const Text(
-                "Today's Habits",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF333333),
-                ),
+      body: Padding(
+        // Use MediaQuery padding to avoid unsafe areas (status bar, notch, etc)
+        padding: EdgeInsets.only(
+          top: mediaPadding.top,
+          left: 16,
+          right: 16,
+          bottom: mediaPadding.bottom,
+        ),
+        child: Column(
+          children: [
+            // Expanded to fill vertical space and allow ListView to scroll
+            Expanded(
+              child: ListView(
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                children: [
+                  _buildHeader(),
+                  const SizedBox(height: 20),
+                  _buildGreeting(username),
+                  const SizedBox(height: 30),
+                  _buildMoodCard(screenWidth),
+                  const SizedBox(height: 30),
+                  const Text(
+                    "Today's Habits",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF333333),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  ..._buildHabitCards(screenWidth),
+                  const SizedBox(height: 100), // Padding before nav bar
+                ],
               ),
-              const SizedBox(height: 16),
-              ..._buildHabitCards(screenWidth),
-              const SizedBox(height: 100), // Padding before nav bar
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
