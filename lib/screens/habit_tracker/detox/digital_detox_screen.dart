@@ -21,7 +21,6 @@ class _DigitalDetoxScreenState extends State<DigitalDetoxScreen> {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F7FA),
-      drawer: const Drawer(child: Center(child: Text("Drawer Menu"))),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -31,11 +30,12 @@ class _DigitalDetoxScreenState extends State<DigitalDetoxScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Builder(
-                    builder: (context) => IconButton(
-                      icon: const Icon(Icons.menu),
-                      onPressed: () => Scaffold.of(context).openDrawer(),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Color(0xFFFF6D2C),
                     ),
+                    onPressed: () => Navigator.pop(context),
                   ),
                   Row(
                     children: [

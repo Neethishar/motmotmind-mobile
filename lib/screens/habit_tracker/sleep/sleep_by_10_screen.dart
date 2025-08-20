@@ -76,11 +76,9 @@ class _SleepBy10ScreenState extends State<SleepBy10Screen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: const Icon(Icons.menu, color: Color(0xFFFF6D2C)),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Color(0xFFFF6D2C)),
+          onPressed: () => Navigator.pop(context),
         ),
         actions: [
           IconButton(
@@ -93,7 +91,6 @@ class _SleepBy10ScreenState extends State<SleepBy10Screen> {
           ),
         ],
       ),
-      drawer: const Drawer(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
