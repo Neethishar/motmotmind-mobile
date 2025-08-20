@@ -8,33 +8,64 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final logger = Logger();
 
-final String baseUrl = () {
-  String url;
+// Replace with your Mac's IP (check with `ifconfig` or `ipconfig getifaddr en0`)
+const String localNetworkIP = "10.0.0.109";
+const int backendPort = 5002;
+
+/// Dynamically pick the best base URL depending on the platform
+String getBaseUrl() {
   if (kIsWeb) {
-    url = "http://localhost:5002";
+    return "http://localhost:$backendPort";
   } else if (Platform.isAndroid) {
-    // Use your Mac's local IP instead of 10.0.2.2
-    url = "http://10.0.0.109:5002";
+    // Android Emulator
+    return "http://10.0.2.2:$backendPort";
   } else if (Platform.isIOS) {
-    url = "http://localhost:5002";
+    // iOS Simulator or device on same network
+    return "http://$localNetworkIP:$backendPort";
   } else {
-    url = "http://10.0.0.109:5002"; // Physical devices or desktop
+    // macOS/Windows/Linux builds
+    return "http://$localNetworkIP:$backendPort";
   }
+}
 
-  logger.i("Platform → Android=${!kIsWeb && Platform.isAndroid}, iOS=${!kIsWeb && Platform.isIOS}, Web=$kIsWeb");
-  logger.i("Base URL → $url");
+/// Try multiple base URLs in case one fails
+Future<String?> getWorkingBaseUrl(List<String> urls) async {
+  for (final url in urls) {
+    try {
+      final resp = await http.get(Uri.parse("$url/ping"))
+          .timeout(const Duration(seconds: 3));
+      if (resp.statusCode == 200) {
+        logger.i("✅ Connected to backend at $url");
+        return url;
+      }
+    } catch (_) {
+      logger.w("⚠️ Failed to connect to $url");
+    }
+  }
+  return null;
+}
 
-  return url;
-}();
-
-/// Save meditation data to the backend
+/// Save meditation data to backend
 Future<bool> saveMeditation({
   required String userId,
   required int duration,
   required DateTime startTime,
   required DateTime endTime,
 }) async {
-  final String endpoint = '$baseUrl/api/meditation';
+  final possibleUrls = [
+    getBaseUrl(),
+    "http://$localNetworkIP:$backendPort",
+    "http://10.0.2.2:$backendPort",
+    "http://localhost:$backendPort",
+  ];
+
+  final baseUrl = await getWorkingBaseUrl(possibleUrls);
+  if (baseUrl == null) {
+    logger.e("❌ No backend connection available");
+    return false;
+  }
+
+  final endpoint = '$baseUrl/api/meditation';
   logger.i("POST → $endpoint");
 
   try {
@@ -64,28 +95,24 @@ Future<bool> saveMeditation({
   }
 }
 
-/// Get the number of completed days from local storage
+/// Local storage functions
 Future<int> getCompletedDays() async {
   final prefs = await SharedPreferences.getInstance();
   return prefs.getInt('completedDays') ?? 0;
 }
 
-/// Increment the completed days counter
 Future<int> incrementCompletedDays() async {
   final prefs = await SharedPreferences.getInstance();
-  final current = prefs.getInt('completedDays') ?? 0;
-  final updated = current + 1;
+  final updated = (prefs.getInt('completedDays') ?? 0) + 1;
   await prefs.setInt('completedDays', updated);
   return updated;
 }
 
-/// Save the last meditation date locally (format: YYYY-MM-DD)
 Future<void> setLastMeditationDate(String today) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setString('lastMeditationDate', today);
 }
 
-/// Get the last meditation date from local storage
 Future<String?> getLastMeditationDate() async {
   final prefs = await SharedPreferences.getInstance();
   return prefs.getString('lastMeditationDate');

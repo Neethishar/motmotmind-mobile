@@ -32,20 +32,16 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
     final lastDate = prefs.getString('lastMeditationDate');
     final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
-    if (lastDate != null && lastDate == today) {
-      setState(() {
-        isFinished = true;
-      });
-    }
-
     setState(() {
       completedDays = prefs.getInt('completedDays') ?? 0;
+      isFinished = lastDate != null && lastDate == today;
     });
   }
 
   void startMeditation() {
     setState(() {
       isStarted = true;
+      isFinished = false;
       elapsedSeconds = 0;
       timeStatusMessage = "";
     });
@@ -89,6 +85,7 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
 
     setState(() {
       isStarted = false;
+      isFinished = true;
       elapsedSeconds = duration;
     });
 
@@ -113,7 +110,7 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
         await prefs.setInt('completedDays', completedDays + 1);
 
         if (mounted) {
-          Navigator.pushNamed(context, '/meditation_congratulation');
+          Navigator.pushReplacementNamed(context, '/meditation_congratulation');
         }
       } else {
         debugPrint('❌ Failed to save meditation: ${response.body}');
@@ -228,7 +225,7 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
             ),
             const SizedBox(height: 30),
 
-            if (!isStarted)
+            if (!isStarted && !isFinished) ...[
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -249,8 +246,10 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
                   ),
                 ),
               ),
+              const SizedBox(height: 12),
+            ],
 
-            if (isStarted || elapsedSeconds >= 120)
+            if (isStarted || (elapsedSeconds >= 120 && !isFinished)) ...[
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -271,6 +270,7 @@ class _MeditationCardScreenState extends State<MeditationCardScreen> {
                   ),
                 ),
               ),
+            ],
           ],
         ),
       ),
