@@ -1,87 +1,118 @@
 import 'dart:convert';
-import 'dart:io'; // Needed for Platform checks
+import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final logger = Logger();
 
-// Base URL setup with platform detection
-final String baseUrl = () {
-  String url;
-  if (Platform.isAndroid) {
-    url = "http://10.0.2.2:5002"; // Android emulator localhost
+// Replace with your Mac's IP (check with `ifconfig` or `ipconfig getifaddr en0`)
+const String localNetworkIP = "10.0.0.109";
+const int backendPort = 5002;
+
+/// Dynamically pick the best base URL depending on the platform
+String getBaseUrl() {
+  if (kIsWeb) {
+    return "http://localhost:$backendPort";
+  } else if (Platform.isAndroid) {
+    // Android Emulator
+    return "http://10.0.2.2:$backendPort";
   } else if (Platform.isIOS) {
-    url = "http://localhost:5002"; // iOS simulator localhost
+    // iOS Simulator or device on same network
+    return "http://$localNetworkIP:$backendPort";
   } else {
-    url = "http://10.0.0.109:5002"; // Physical devices or other platforms
+    // macOS/Windows/Linux builds
+    return "http://$localNetworkIP:$backendPort";
   }
+}
 
-  // Log platform and URL
-  logger.i("Detected platform → Android=${Platform.isAndroid}, iOS=${Platform.isIOS}");
-  logger.i("Using Base URL → $url");
-  return url;
-}();
+/// Try multiple base URLs in case one fails
+Future<String?> getWorkingBaseUrl(List<String> urls) async {
+  for (final url in urls) {
+    try {
+      final resp = await http.get(Uri.parse("$url/ping"))
+          .timeout(const Duration(seconds: 3));
+      if (resp.statusCode == 200) {
+        logger.i("✅ Connected to backend at $url");
+        return url;
+      }
+    } catch (_) {
+      logger.w("⚠️ Failed to connect to $url");
+    }
+  }
+  return null;
+}
 
-/// Save meditation data to the backend
+/// Save meditation data to backend
 Future<bool> saveMeditation({
   required String userId,
   required int duration,
   required DateTime startTime,
   required DateTime endTime,
 }) async {
-  final String endpoint = '$baseUrl/api/meditation';
-  logger.i("Posting meditation to $endpoint");
+  final possibleUrls = [
+    getBaseUrl(),
+    "http://$localNetworkIP:$backendPort",
+    "http://10.0.2.2:$backendPort",
+    "http://localhost:$backendPort",
+  ];
+
+  final baseUrl = await getWorkingBaseUrl(possibleUrls);
+  if (baseUrl == null) {
+    logger.e("❌ No backend connection available");
+    return false;
+  }
+
+  final endpoint = '$baseUrl/api/meditation';
+  logger.i("POST → $endpoint");
 
   try {
-    final response = await http.post(
-      Uri.parse(endpoint),
-      headers: {'Content-Type': 'application/json'},
-      body: json.encode({
-        'userId': userId,
-        'duration': duration,
-        'startTime': startTime.toIso8601String(),
-        'endTime': endTime.toIso8601String(),
-      }),
-    );
+    final response = await http
+        .post(
+          Uri.parse(endpoint),
+          headers: {'Content-Type': 'application/json'},
+          body: json.encode({
+            'userId': userId,
+            'duration': duration,
+            'startTime': startTime.toIso8601String(),
+            'endTime': endTime.toIso8601String(),
+          }),
+        )
+        .timeout(const Duration(seconds: 10));
 
     if (response.statusCode == 201) {
       logger.i("✅ Meditation saved successfully");
       return true;
     } else {
-      logger.e(
-        "❌ Failed to save meditation: ${response.statusCode} → ${response.body}",
-      );
+      logger.e("❌ Save failed: ${response.statusCode} → ${response.body}");
       return false;
     }
-  } catch (e) {
-    logger.e("❌ Error saving meditation", error: e);
+  } catch (e, stack) {
+    logger.e("❌ Error saving meditation", error: e, stackTrace: stack);
     return false;
   }
 }
 
-/// Get the number of completed days from local storage
+/// Local storage functions
 Future<int> getCompletedDays() async {
   final prefs = await SharedPreferences.getInstance();
   return prefs.getInt('completedDays') ?? 0;
 }
 
-/// Increment the completed days counter
 Future<int> incrementCompletedDays() async {
   final prefs = await SharedPreferences.getInstance();
-  int current = prefs.getInt('completedDays') ?? 0;
-  await prefs.setInt('completedDays', current + 1);
-  return current + 1;
+  final updated = (prefs.getInt('completedDays') ?? 0) + 1;
+  await prefs.setInt('completedDays', updated);
+  return updated;
 }
 
-/// Save the last meditation date locally
 Future<void> setLastMeditationDate(String today) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setString('lastMeditationDate', today);
 }
 
-/// Get the last meditation date from local storage
 Future<String?> getLastMeditationDate() async {
   final prefs = await SharedPreferences.getInstance();
   return prefs.getString('lastMeditationDate');
